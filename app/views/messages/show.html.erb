@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @message.category %>
+</p>
+
+<p>
+  <strong>Dispatch on:</strong>
+  <%= @message.dispatch_on %>
+</p>
+
+<p>
+  <strong>Ip address:</strong>
+  <%= @message.ip_address %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @message.text %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @message.user_id %>
+</p>
+
+<p>
+  <strong>Num:</strong>
+  <%= @message.num_id %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @message.address_id %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>
