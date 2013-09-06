@@ -12,6 +12,7 @@ gem 'twilio-ruby'
 gem 'chronic'
 gem 'omnicontacts'
 gem 'devise'
+gem 'gmaps4rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

@@ -24,11 +24,11 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.json
   def create
-    @address = Address.new(address_params)
+    @addresses = Addresses.new(addresses_params)
 
     respond_to do |format|
-      if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
+      if @addresses.save
+        format.html { redirect_to root_path, notice: 'Address was successfully created.' }
         format.json { render action: 'show', status: :created, location: @address }
       else
         format.html { render action: 'new' }
@@ -68,7 +68,7 @@ class AddressesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def address_params
-      params.require(:address).permit(:zip_code, :state, :lat_long, :city, :street)
+    def addresses_params
+      params.require(:addresses).permit(:zip_code, :state, :lat_long, :city, :street)
     end
 end

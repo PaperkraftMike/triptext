@@ -1,15 +1,14 @@
 TextMe::Application.routes.draw do
   root :to => "home#index"
-  
-  resources :numbers
+
+  resources :users do
+    resources :messages
+    resources :contacts
+  end
 
   resources :addresses
 
-  resources :contacts
 
-  resources :messages
-
-  resources :users
 
 
 

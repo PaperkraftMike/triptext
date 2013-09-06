@@ -4,7 +4,11 @@
     %title TextMe
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
-    %link{:href => "//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css", :rel => "stylesheet"}
+    = stylesheet_link_tag 'gmaps4rails'
     = csrf_meta_tags
   %body
     = yield
+
+  %footer
+    = yield :scripts
