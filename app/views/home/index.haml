@@ -19,3 +19,17 @@
   =f.submit
 
 =gmaps4rails(@json)
+
+%h3
+  Who do you want to text? 
+=form_for Message.new, :url => messages_path do |f|
+  =f.label :dispatch_on
+  =f.datetime_select :dispatch_on
+  %br
+  =f.label :text
+  =f.text_area :text
+  %br
+  =f.label :phone_number
+  =f.text_field :phone_number
+  %br
+  =f.submit

@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20130906000341) do
     t.string   "ip_address"
     t.string   "text"
     t.integer  "user_id"
-    t.integer  "num_id"
+    t.integer  "number_id"
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
