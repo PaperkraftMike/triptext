@@ -1,5 +1,14 @@
 class Addresses < ActiveRecord::Base
-  belongs_to :message
+  belongs_to :message  
+ 
+  geocoded_by :full_street_address   
+  after_validation :geocode, :if => :full_addresses_changed?  
+
+
+  def full_addresses
+    street + " " + city + ", " + state + zip_code
+  end 
+
   acts_as_gmappable
 
   def gmaps4rails_address

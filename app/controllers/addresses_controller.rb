@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
-    @address = Address.new
+    @addresses = Addresses.new
   end
 
   # GET /addresses/1/edit
@@ -29,10 +29,10 @@ class AddressesController < ApplicationController
     respond_to do |format|
       if @addresses.save
         format.html { redirect_to root_path, notice: 'Address was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @address }
+        format.json { render action: 'show', status: :created, location: @addresses }
       else
         format.html { render action: 'new' }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
+        format.json { render json: @addresses.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -14,3 +14,29 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({address: 'Jax Beach, FL'}, function(results, status) {
+      var bounds = results[0].geometry.bounds,
+          center = results[0].geometry.location;
+      if (bounds) {
+          var ne = bounds.getNorthEast(),
+              sw = bounds.getSouthWest(),
+              data = { sw: [sw.lat(), sw.lng()], ne: [ne.lat(), ne.lng()]};
+
+              // ajax call to rails service API
+      }
+  });
+
+var opts = {
+    zoom: 10,
+    max_zoom: 16,
+    scrollwheel: false,
+    center: new google.maps.LatLng(center.lat(), center.lng()),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    MapTypeControlOptions: {
+        MapTypeIds: [google.maps.MapTypeId.ROADMAP]
+        }
+    };
+
+var map = new google.maps.Map($('#map'), opts);

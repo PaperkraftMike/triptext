@@ -18,7 +18,22 @@
   %br
   =f.submit
 
-=gmaps4rails(@json)
+=Time.now
+
+%br
+
+:javascript
+  google.maps.event.addListener(map, 'idle', function() {
+    geocoder
+  });
+
+%br
+= gmaps("map_options" => {"zoom" => 14}, "markers" => { "data" => @json },                                        
+  "direction"   => { "data" => {"from" => request.location.city, "to" => Addresses.last.full_addresses},"travelMode" => "DRIVING"})
+
+
+
+%br
 
 %h3
   Who do you want to text? 
