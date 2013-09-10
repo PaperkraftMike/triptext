@@ -15,28 +15,39 @@
 //= require turbolinks
 //= require_tree .
 
-var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({address: 'Jax Beach, FL'}, function(results, status) {
-      var bounds = results[0].geometry.bounds,
-          center = results[0].geometry.location;
-      if (bounds) {
-          var ne = bounds.getNorthEast(),
-              sw = bounds.getSouthWest(),
-              data = { sw: [sw.lat(), sw.lng()], ne: [ne.lat(), ne.lng()]};
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
 
-              // ajax call to rails service API
-      }
-  });
-
-var opts = {
-    zoom: 10,
-    max_zoom: 16,
-    scrollwheel: false,
-    center: new google.maps.LatLng(center.lat(), center.lng()),
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var mapOptions = {
+    zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    MapTypeControlOptions: {
-        MapTypeIds: [google.maps.MapTypeId.ROADMAP]
-        }
-    };
+    center: new google.maps.LatLng(41.850033, -87.6500523)
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('directions-panel'));
 
-var map = new google.maps.Map($('#map'), opts);
+  var control = document.getElementById('control');
+  control.style.display = 'block';
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+}
+
+function calcRoute() {
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);

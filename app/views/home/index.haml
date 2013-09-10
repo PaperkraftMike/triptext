@@ -17,21 +17,38 @@
   =f.text_field :state
   %br
   =f.submit
-
-=Time.now
-
-%br
-
-:javascript
-  google.maps.event.addListener(map, 'idle', function() {
-    geocoder
-  });
-
-%br
-= gmaps("map_options" => {"zoom" => 14}, "markers" => { "data" => @json },                                        
-  "direction"   => { "data" => {"from" => request.location.city, "to" => Addresses.last.full_addresses},"travelMode" => "DRIVING"})
-
-
+  
+#panel
+  %b Start:
+  %select#start{:onchange => "calcRoute();"}
+    %option{:value => "chicago, il"} Chicago
+    %option{:value => "st louis, mo"} St Louis
+    %option{:value => "joplin, mo"} Joplin, MO
+    %option{:value => "oklahoma city, ok"} Oklahoma City
+    %option{:value => "amarillo, tx"} Amarillo
+    %option{:value => "gallup, nm"} Gallup, NM
+    %option{:value => "flagstaff, az"} Flagstaff, AZ
+    %option{:value => "winona, az"} Winona
+    %option{:value => "kingman, az"} Kingman
+    %option{:value => "barstow, ca"} Barstow
+    %option{:value => "san bernardino, ca"} San Bernardino
+    %option{:value => "los angeles, ca"} Los Angeles
+  %b End:
+  %select#end{:onchange => "calcRoute();"}
+    %option{:value => "chicago, il"} Chicago
+    %option{:value => "st louis, mo"} St Louis
+    %option{:value => "joplin, mo"} Joplin, MO
+    %option{:value => "oklahoma city, ok"} Oklahoma City
+    %option{:value => "amarillo, tx"} Amarillo
+    %option{:value => "gallup, nm"} Gallup, NM
+    %option{:value => "flagstaff, az"} Flagstaff, AZ
+    %option{:value => "winona, az"} Winona
+    %option{:value => "kingman, az"} Kingman
+    %option{:value => "barstow, ca"} Barstow
+    %option{:value => "san bernardino, ca"} San Bernardino
+    %option{:value => "los angeles, ca"} Los Angeles
+#directions-panel
+#map-canvas
 
 %br
 
