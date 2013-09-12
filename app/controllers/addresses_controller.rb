@@ -25,7 +25,6 @@ class AddressesController < ApplicationController
   # POST /addresses.json
   def create
     @addresses = Addresses.new(addresses_params)
-
     respond_to do |format|
       if @addresses.save
         format.html { redirect_to root_path, notice: 'Address was successfully created.' }
