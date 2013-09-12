@@ -4,7 +4,7 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = Addresses.all
   end
 
   # GET /addresses/1
@@ -40,12 +40,12 @@ class AddressesController < ApplicationController
   # PATCH/PUT /addresses/1.json
   def update
     respond_to do |format|
-      if @address.update(address_params)
+      if @addresses.update(addresses_params)
         format.html { redirect_to @address, notice: 'Address was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
+        format.json { render json: @addresses.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +53,7 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   # DELETE /addresses/1.json
   def destroy
-    @address.destroy
+    @addresses.destroy
     respond_to do |format|
       format.html { redirect_to addresses_url }
       format.json { head :no_content }
@@ -63,7 +63,7 @@ class AddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address
-      @address = Address.find(params[:id])
+      @address = Addresses.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -30,7 +30,7 @@
   =form_for Destination.new, :url => destinations_path, :remote => true do |f|
     .destination_street
       =f.label :street
-      =f.text_field :street, :placeholder => "street"
+      =f.text_field :street
     %br
     .destination_city
       =f.label :city
@@ -45,6 +45,9 @@
       =f.text_field :state
     %br
       =f.submit
+
+.p
+
 
 
 #panel

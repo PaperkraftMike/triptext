@@ -89,16 +89,9 @@ $('form').submit(function() {
     return false; // prevents normal behaviour
 });
 
-$(document).ready(function(){
-  var c_street = $(".current_location_street").val();
-  var c_zip_code = $(".current_location_zip_code").val();
-  var c_city = $(".current_location_city").val();
-  var c_state = $(".current_location_state").val();
-  var current_location = c_state + c_zip_code + c_city + c_state
-});
 
-$(".destination_street").keyup(function(){
-  var street = $(this).val();
+$(".destination").keyup(function(){
+  var street = $(".destination_street").val();
 });
 
 
