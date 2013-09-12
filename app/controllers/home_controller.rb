@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @json = Addresses.last.to_gmaps4rails
+    @address = Addresses.last.full_addresses
+    @destination = Destination.last
   end
 end 

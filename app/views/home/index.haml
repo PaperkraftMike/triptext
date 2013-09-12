@@ -1,52 +1,55 @@
 %h1
   Hello! Welcome to Text Me
 
-%h3
-  Where do you want to go?
-=form_for Addresses.new, :url => addresses_path do |f|
-  =f.label :street
-  =f.text_field :street
-  %br
-  =f.label :city
-  =f.text_field :city
-  %br
-  =f.label :zip_code
-  =f.text_field :zip_code
-  %br
-  =f.label :state
-  =f.text_field :state
-  %br
-  =f.submit
-  
+.current_location
+  %h3
+    Where are you now? 
+  =form_for Addresses.new, :url => addresses_path, :remote => true do |f|
+    .current_location_street
+      =f.label :street
+      =f.text_field :street
+    %br
+    .current_location_city
+      =f.label :city
+      =f.text_field :city
+    %br
+    .current_location_zip_code
+      =f.label :zip_code
+      =f.text_field :zip_code
+    %br
+    .current_location_state
+      =f.label :state
+      =f.text_field :state
+    %br
+      =f.submit
+
+.p
+
+.destination
+  %h3
+    Where do you want to go?  
+  =form_for Destination.new, :url => destinations_path, :remote => true do |f|
+    .destination_street
+      =f.label :street
+      =f.text_field :street, :placeholder => "street"
+    %br
+    .destination_city
+      =f.label :city
+      =f.text_field :city
+    %br
+    .destination_zip_code
+      =f.label :zip_code
+      =f.text_field :zip_code
+    %br
+    .destination_state
+      =f.label :state
+      =f.text_field :state
+    %br
+      =f.submit
+
+
 #panel
-  %b Start:
-  %select#start{:onchange => "calcRoute();"}
-    %option{:value => "chicago, il"} Chicago
-    %option{:value => "st louis, mo"} St Louis
-    %option{:value => "joplin, mo"} Joplin, MO
-    %option{:value => "oklahoma city, ok"} Oklahoma City
-    %option{:value => "amarillo, tx"} Amarillo
-    %option{:value => "gallup, nm"} Gallup, NM
-    %option{:value => "flagstaff, az"} Flagstaff, AZ
-    %option{:value => "winona, az"} Winona
-    %option{:value => "kingman, az"} Kingman
-    %option{:value => "barstow, ca"} Barstow
-    %option{:value => "san bernardino, ca"} San Bernardino
-    %option{:value => "los angeles, ca"} Los Angeles
-  %b End:
-  %select#end{:onchange => "calcRoute();"}
-    %option{:value => "chicago, il"} Chicago
-    %option{:value => "st louis, mo"} St Louis
-    %option{:value => "joplin, mo"} Joplin, MO
-    %option{:value => "oklahoma city, ok"} Oklahoma City
-    %option{:value => "amarillo, tx"} Amarillo
-    %option{:value => "gallup, nm"} Gallup, NM
-    %option{:value => "flagstaff, az"} Flagstaff, AZ
-    %option{:value => "winona, az"} Winona
-    %option{:value => "kingman, az"} Kingman
-    %option{:value => "barstow, ca"} Barstow
-    %option{:value => "san bernardino, ca"} San Bernardino
-    %option{:value => "los angeles, ca"} Los Angeles
+
 #directions-panel
 #map-canvas
 
@@ -54,7 +57,7 @@
 
 %h3
   Who do you want to text? 
-=form_for Message.new, :url => messages_path do |f|
+=form_for Message.new, :url => messages_path, :remote => true do |f|
   =f.label :dispatch_on
   =f.datetime_select :dispatch_on
   %br

@@ -8,6 +8,9 @@ TextMe::Application.routes.draw do
   resources :contacts
 
   resources :addresses
+  
+  resources :destinations
+
 
 
 
