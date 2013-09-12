@@ -3,6 +3,14 @@ class Message < ActiveRecord::Base
 
   require 'twilio-ruby'
 
+  
+  def create_number
+    if phone_number.present?
+      @number = Number.new(:phone_number => phone_number)
+      @number.save && @number.messages << Message.last
+    end
+  end
+  
 
   def send_text
     @current_message = Message.last
@@ -16,13 +24,6 @@ class Message < ActiveRecord::Base
       )
   end
 
-  def create_number
-    if phone_number.present?
-      @number = Number.new(:phone_number => phone_number)
-      @number.save
-      @number.messages << Message.last
-    end
-  end
   
   has_one :number
   has_one :addresses

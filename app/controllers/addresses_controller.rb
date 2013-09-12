@@ -24,6 +24,7 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.json
   def create
+    puts params.inspect
     @addresses = Addresses.new(addresses_params)
     respond_to do |format|
       if @addresses.save

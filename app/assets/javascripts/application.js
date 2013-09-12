@@ -33,7 +33,7 @@ function initialize() {
   directionsDisplay.setPanel(document.getElementById('directions-panel'));
 
   var control = document.getElementById('control');
-  control.style.display = 'block';
+  // control.style.display = 'block';
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 }
 
@@ -77,22 +77,19 @@ function calcRoute() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-$('form').submit(function() {  
-    var valuesToSubmit = $(this).serialize();
-    $.ajax({
-        url: $(this).attr('action'), //sumbits it to the given url of the form
-        data: valuesToSubmit,
-        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-    }).success(function(json){
+// $('form').submit(function() {  
+//     var valuesToSubmit = $(this).serialize();
+//     $.ajax({
+//         url: $(this).attr('action'), //sumbits it to the given url of the form
+//         data: valuesToSubmit,
+//         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+//     }).success(function(json){
 
-    });
-    return false; // prevents normal behaviour
-});
+//     });
+//     return false; // prevents normal behaviour
+// });
 
 
-$(".destination").keyup(function(){
-  var street = $(".destination_street").val();
-});
 
 
 

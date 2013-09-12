@@ -46,9 +46,6 @@
     %br
       =f.submit
 
-.p
-
-
 
 #panel
 
@@ -59,7 +56,7 @@
 
 %h3
   Who do you want to text? 
-=form_for Message.new, :url => messages_path, :remote => true do |f|
+=form_for Message.new, :url => messages_path, :remote => true, :method => :post do |f|
   =f.label :dispatch_on
   =f.datetime_select :dispatch_on
   %br
