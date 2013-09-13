@@ -5,21 +5,17 @@
   %h3
     Where are you now? 
   =form_for Addresses.new, :url => addresses_path, :remote => true do |f|
-    .current_location_street
-      =f.label :street
-      =f.text_field :street
+    =f.label :street
+    =f.text_field :street, class: "current_location_street"
     %br
-    .current_location_city
-      =f.label :city
-      =f.text_field :city
+    =f.label :city
+    =f.text_field :city, class: "current_location_city"
     %br
-    .current_location_zip_code
-      =f.label :zip_code
-      =f.text_field :zip_code
+    =f.label :zip_code
+    =f.text_field :zip_code, class: "current_location_zip_code"
     %br
-    .current_location_state
-      =f.label :state
-      =f.text_field :state
+    =f.label :state
+    =f.text_field :state, class: "current_location_state"
     %br
       =f.submit
 
