@@ -14,11 +14,28 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require parallax.min.js
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map
 var geocoder_one_results
+
+$(document).ready(function() {
+
+  parallax.add($("#first"))
+      .add($("#second"))
+      .add($("#third"));
+
+  parallax.first.onload=function(){
+    setRight("second", "Second");
+  };
+
+  parallax.second.onload=function(){
+    setRight("third", "Third");
+  };
+
+$(".submit-destination").onclick(parallax.second.left());
 
 var infowindow = new google.maps.InfoWindow(
   { 
@@ -127,16 +144,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //     return false; // prevents normal behaviour
 // });
 
-
-
-
-
-
-
-
-
-
-
+});
 
 
 

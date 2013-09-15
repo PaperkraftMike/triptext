@@ -1,65 +1,64 @@
-%h1
-  Hello! Welcome to Text Me
+.top
+.content
 
-.current_location
-  %h3
-    Where are you now? 
-  =form_for Addresses.new, :url => addresses_path, :remote => true do |f|
-    =f.label :street
-    =f.text_field :street, class: "current_location_street"
-    %br
-    =f.label :city
-    =f.text_field :city, class: "current_location_city"
-    %br
-    =f.label :zip_code
-    =f.text_field :zip_code, class: "current_location_zip_code"
-    %br
-    =f.label :state
-    =f.text_field :state, class: "current_location_state"
-    %br
-      =f.submit
+  // Section 1
+  .w-container.header#first
+    .header-container
+      %h1 Where do you want to go?
+    .w-row
+      .w-col.w-col-4
+        %h1.destination Address
+      .w-col.w-col-8
+        %input.w-input.destination-field{:type => "text", :placeholder => "Destination", :name => "street", :required => "required", :autofocus => "autofocus", :'data-name' => "street"}
+    .w-row
+      .w-col.w-col-4
+        %h1.zip-code Zip Code
+      .w-col.w-col-8
+        %input.w-input.destination-field{:type => "text", :placeholder => "Zip Code", :name => "zip_code", :required => "required", :'data-name' => "zip_code"}
+    .w-row
+      .w-col.w-col-4
+        // %form{:action => "/destination/", :method => "POST"}
+        %a.button.submit-destination{:href => "#"} Let's Go!
+      .w-col.w-col-8
 
+  // Section 2
+  .w-container.header#second
+    .header-container
+      %h1 Where are you now?
+    .w-row
+      .w-col.w-col-4
+        %h1.address Address
+      .w-col.w-col-8
+        %input.w-input.address-field{:type => "text", :placeholder => "Address", :name => "street", :required => "required", :'data-name' => "Address"}
+    .w-row
+      .w-col.w-col-4
+        %h1.zip-code Zip Code
+      .w-col.w-col-8
+        %input.w-input.address-field{:type => "text", :placeholder => "Zip Code", :name => "zip_code", :required => "required", :'data-name' => "zip_code"}
+    .w-row
+      .w-col.w-col-4
+        %form{:action => "/addresses/", :method => "POST"}
+          %button.button.submit-address{:href => "#"} Let's Go!
+      .w-col.w-col-8
 
-.destination
-  %h3
-    Where do you want to go?  
-  =form_for Destination.new, :url => destinations_path, :remote => true do |f|
-    .destination_street
-      =f.label :street
-      =f.text_field :street
-    %br
-    .destination_city
-      =f.label :city
-      =f.text_field :city
-    %br
-    .destination_zip_code
-      =f.label :zip_code
-      =f.text_field :zip_code
-    %br
-    .destination_state
-      =f.label :state
-      =f.text_field :state
-    %br
-      =f.submit
+  .w-container.header#third
+    .header-container
+      %h1 Who do you want to text (when you arrive)?
+    .w-row
+      .w-col.w-col-4
+        %h1.cell Cell Phone
+      .w-col.w-col-8
+        %input.w-input.cell-field{:type => "text", :placeholder => "Number", :name => "phone_number", :required => "required", :'data-name' => "phone_number"}
+    .w-row
+      .w-col.w-col-4
+        %h1.cell-add + 1
+      .w-col.w-col-8
+    .w-row
+      .w-col.w-col-4
+        %form{:action => "/messages/", :method => "POST"}
+          %button.button.submit-cell{:href => "#"} Let's Go!
+      .w-col.w-col-8
 
-
-#panel
-
-#directions-panel
-#map-canvas
-
-%br
-
-%h3
-  Who do you want to text? 
-=form_for Message.new, :url => messages_path, :remote => true, :method => :post do |f|
-  =f.label :dispatch_on
-  =f.datetime_select :dispatch_on
-  %br
-  =f.label :text
-  =f.text_area :text
-  %br
-  =f.label :phone_number
-  =f.text_field :phone_number
-  %br
-  =f.submit
+.bottom
+  .w-container
+    .company TEXT ME
