@@ -14,3 +14,137 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require parallax.min.js
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map
+var geocoder_one_results
+
+$(document).ready(function() {
+
+  parallax.add($("#first"))
+      .add($("#second"))
+      .add($("#third"));
+
+  parallax.first.onload=function(){
+    setRight("second", "Second");
+  };
+
+  parallax.second.onload=function(){
+    setRight("third", "Third");
+  };
+
+$(".submit-destination").onclick(parallax.second.left());
+
+var infowindow = new google.maps.InfoWindow(
+  { 
+    size: new google.maps.Size(150,50)
+  });
+
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var mapOptions = {
+    zoom: 7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: new google.maps.LatLng(41.850033, -87.6500523)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
+  var control = document.getElementById('control');
+  //control.style.display = 'block';
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+}
+
+function calcRoute() {
+  var start = full_current_location
+  var end = full_destination
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+function createMarker(latlng, name, html) {
+    latlng = latlng[0].geometry.location
+    var contentString = html;
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+        });
+    google.maps.event.trigger(marker, 'click');    
+    return marker;
+}
+
+function getLatLong(address, callback){
+      var geo = new google.maps.Geocoder;
+      geo.geocode({'address':address},function(results, status){
+              if (status == google.maps.GeocoderStatus.OK) {
+                callback(results, "my pin", "a great pin")
+              } else {
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+       });
+  }
+
+
+
+$(".current_location").submit(function(){
+  c_street = $(".current_location_street").val();
+  c_city = $(".current_location_city").val();
+  c_zip_code = $(".current_location_zip_code").val();
+  c_state = $(".current_location_state").val();
+  full_current_location = c_street + " " + c_city +  " "  + c_zip_code + " " + c_state
+  getLatLong(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+  
+  return false;
+});
+
+$(".destination").submit(function(){
+  window.full_destination = d_street + " " + d_city +  " "  + d_zip_code + " " + d_state
+  calcRoute();
+  return false;
+});
+
+
+$(".destination").change(function(){
+  window.d_street = $(".destination_street").val();
+  window.d_city = $(".destination_city").val();
+  window.d_zip_code = $(".destination_zip_code").val();
+  window.d_state = $(".destination_state").val();
+});
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+// $('form').submit(function() {  
+//     var valuesToSubmit = $(this).serialize();
+//     $.ajax({
+//         url: $(this).attr('action'), //sumbits it to the given url of the form
+//         data: valuesToSubmit,
+//         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+//     }).success(function(json){
+
+//     });
+//     return false; // prevents normal behaviour
+// });
+
+});
+
+
+

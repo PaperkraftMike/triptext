@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Zip code:
+  = @destination.zip_code
+%p
+  %b State:
+  = @destination.state
+%p
+  %b City:
+  = @destination.city
+%p
+  %b Street:
+  = @destination.street
+%p
+  %b Latitude:
+  = @destination.latitude
+%p
+  %b Longitude:
+  = @destination.longitude
+
+= link_to 'Edit', edit_destination_path(@destination)
+\|
+= link_to 'Back', destinations_path
