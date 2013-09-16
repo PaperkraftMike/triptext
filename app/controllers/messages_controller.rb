@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+
   # GET /messages
   # GET /messages.json
   def index
@@ -27,8 +28,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+      if @message.save && @message.create_number 
+        @message.send_text
+        format.html { redirect_to root_path, notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
@@ -69,6 +71,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:category, :dispatch_on, :ip_address, :text, :user_id, :num_id, :address_id)
+      params.require(:message).permit(:category, :dispatch_on, :ip_address, :text, :user_id, :number_id, :address_id, :phone_number)
     end
 end

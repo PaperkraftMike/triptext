@@ -6,7 +6,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :ip_address
       t.string :text
       t.integer :user_id
-      t.integer :num_id
+      t.integer :number_id
       t.integer :address_id
 
       t.timestamps
