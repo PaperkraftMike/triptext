@@ -19,8 +19,8 @@ class Message < ActiveRecord::Base
     @client = Twilio::REST::Client.new(@twilio_sid.to_s.strip, @twilio_auth_token.to_s.strip)
       @client.account.sms.messages.create(
         :from => ENV['TWILIO_NUMBER'],
-        :to => Number.find(@current_message.number_id).phone_number,
-        :body => @current_message.text
+        :to => "+1#{Number.find(@current_message.number_id).phone_number}",
+        :body => "I'll be there in five minutes."
       )
   end
 
