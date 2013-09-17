@@ -48,7 +48,7 @@ function initialize() {
   var mapOptions = {
     zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: new google.maps.LatLng(41.850033, -87.6500523)
+    center: new google.maps.LatLng(40.6700, -73.9400)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -60,9 +60,7 @@ function initialize() {
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 }
 
-function calcRoute() {
-  var start = full_current_location
-  var end = full_destination
+function calcRoute(start, end) {
   var request = {
       origin:start,
       destination:end,
@@ -70,6 +68,7 @@ function calcRoute() {
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+      console.log(response.routes[0].legs[0].duration.value);
       directionsDisplay.setDirections(response);
     }
   });
@@ -92,11 +91,22 @@ function createMarker(latlng, name, html) {
     return marker;
 }
 
-function getLatLong(address, callback){
+function getLatLong_destination(address, callback){
       var geo = new google.maps.Geocoder;
-      geo.geocode({'address':address,},function(results, status){
+      geo.geocode({'address':address},function(results, status){
               if (status == google.maps.GeocoderStatus.OK) {
-                callback(results, "my pin", "a great pin")
+                callback(results, "Destination Pin", "Destination")
+              } else {
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+       });
+  }
+
+function getLatLong_current(address, callback){
+      var geo = new google.maps.Geocoder;
+      geo.geocode({'address':address},function(results, status){
+              if (status == google.maps.GeocoderStatus.OK) {
+                callback(results, "Current Location Pin", "Current Location")
               } else {
                 alert("Geocode was not successful for the following reason: " + status);
               }
@@ -104,23 +114,21 @@ function getLatLong(address, callback){
   }
 
 
-
-
 $(".destination").submit(function(){
-  d_street = $(".destination_street input[type='text']");
-  console.log(d_street)
-  d_zip_code = $(".destination_zip_code input[type='text']");
-  console.log(d_zip_code)
-  full_destination = d_street + "+" + d_zip_code
-  console.log(full_destination)
-  getLatLong(full_destination, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
-});
+  d_street = $(".destination_street input[type='text']").val();
+  d_zip_code = $(".destination_zip_code input[type='text']").val();
+  full_destination = d_street + d_zip_code
+  getLatLong_destination(full_destination, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+
 
 $(".current_location").submit(function(){
-  c_street = $(".current_street input[type='text']");
-  c_zip_code = $(".current_zip_code input[type='text']");
+  c_street = $(".current_street input[type='text']").val();
+  c_zip_code = $(".current_zip_code input[type='text']").val();
   full_current_location = c_street + ", " + c_zip_code
-  getLatLong(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+  getLatLong_current(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+  calcRoute(full_current_location, full_destination);
+});
+
 });
 
 
