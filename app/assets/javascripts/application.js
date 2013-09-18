@@ -14,33 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require parallax.min.js
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var map
-var geocoder_one_results
+var map;
+var geocoder_one_results;
+
 
 $(document).ready(function() {
-
-//  parallax.add($("#first"))
-//    .add($("#second"))
-//  .add($("#third"));
-
-//  parallax.first.onload=function(){
-//    setRight("second", "Second");
-//  };
-
-//  parallax.second.onload=function(){
-//    setRight("third", "Third");
-//  };
-
-//$(".submit-destination").onclick(parallax.second.left());
 
 var infowindow = new google.maps.InfoWindow(
   { 
     size: new google.maps.Size(150,50)
   });
+
 
 
 function initialize() {
@@ -50,7 +37,7 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: new google.maps.LatLng(40.6700, -73.9400)
   };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
+  map = new google.maps.Map(document.getElementById('map_canvas'),
       mapOptions);
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('directions-panel'));
@@ -68,7 +55,7 @@ function calcRoute(start, end) {
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      $(".drive_time").val(response.routes[0].legs[0].duration);
+      console.log($(".drive_time").val(response.routes[0].legs[0].duration));
       directionsDisplay.setDirections(response);
     }
   });
@@ -91,6 +78,7 @@ function createMarker(latlng, name, html) {
     return marker;
 }
 
+
 function getLatLong_destination(address, callback){
       var geo = new google.maps.Geocoder;
       geo.geocode({'address':address},function(results, status){
@@ -101,6 +89,7 @@ function getLatLong_destination(address, callback){
               }
        });
   }
+
 
 function getLatLong_current(address, callback){
       var geo = new google.maps.Geocoder;
@@ -114,12 +103,14 @@ function getLatLong_current(address, callback){
   }
 
 
+
+
 $(".destination").submit(function(){
   d_street = $(".destination_street input[type='text']").val();
   d_zip_code = $(".destination_zip_code input[type='text']").val();
   full_destination = d_street + d_zip_code
   getLatLong_destination(full_destination, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
-
+});
 
 $(".current_location").submit(function(){
   c_street = $(".current_street input[type='text']").val();
@@ -129,24 +120,46 @@ $(".current_location").submit(function(){
   calcRoute(full_current_location, full_destination);
 });
 
-});
-
-
 google.maps.event.addDomListener(window, 'load', initialize);
 
-// $('form').submit(function() {  
-//     var valuesToSubmit = $(this).serialize();
-//     $.ajax({
-//         url: $(this).attr('action'), //sumbits it to the given url of the form
-//         data: valuesToSubmit,
-//         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-//     }).success(function(json){
+$('.submit-destination').click(function() {
 
-//     });
-//     return false; // prevents normal behaviour
-// });
+    $('#first').animate({
+        left: '-50%'
+    }, 500, function() {
+        $('#first').css('display', 'none');
+    });
 
+    $('#second').animate({
+        left: '50%'
+    }, 500);
 });
 
+$('.submit-address').click(function() {
 
+    $('#second').animate({
+        left: '-50%'
+    }, 500, function() {
+        $('#second').css('display', 'none');
+    });
 
+    $('#third').animate({
+        left: '50%'
+    }, 500);
+});
+
+$('.submit-message').click(function() {
+
+    $('#third').animate({
+        left: '-50%'
+    }, 500, function() {
+        $('#third').css('display', 'none');
+        $('.map').css('left', '50%');
+    });
+
+    $('.map').animate({
+        opacity: 1
+    }, 500);
+});
+
+});

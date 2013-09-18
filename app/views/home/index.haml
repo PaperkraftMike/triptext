@@ -1,75 +1,65 @@
-.top
-.content
+%section.content
+
+  %header
+    %h1 TEXT ME
 
   // Section 1
-  .w-container.header#first
-    .destination
-      .header-container
-        %h1 Where do you want to go?
-      =form_for Destination.new, :url => destinations_path, :remote => true do |f|
-        .w-row
-          .w-col.w-col-4
-            %h1.destination Address
-          .w-col.w-col-8
+  .destination
+    .form-section#first
+      %h2 Where do you want to go?
+      =form_for @destination, url: {action: "create", controller: "destinations"}, remote: true do |f|
+        .row
+          .span-2
+            %h3.destination Address
+          .span-8
           .destination_street
-            =f.text_field :street    
-        .w-row
-          .w-col.w-col-4
-            %h1.zip-code Zip Code
-          .w-col.w-col-8
+            =f.text_field :street, placeholder: "Your Destination"
+        .row
+          .span-2
+            %h3.zip-code Zip Code
+          .span-8
           .destination_zip_code
-            =f.text_field :zip_code
-          .drive_time
-            =f.hidden_field :drive_time
-        .w-row
-          .w-col.w-col-4
-          =f.submit
-          .w-col.w-col-8
+            =f.text_field :zip_code, placeholder: "Zip Code"
+        .row
+          .span-2
+            =f.submit "Next!", class: "submit submit-destination"
 
   // Section 2
-  .w-container.header#second
-    .current_location
-      .header-container
-        %h1 Where are you now?
-      =form_for Addresses.new, :url => addresses_path, :remote => true do |f|
-        .w-row
-          .w-col.w-col-4
-            %h1.address Address
-          .w-col.w-col-8
+  .current_location
+    .form-section#second
+      %h2 Where are you now?
+      =form_for @address, url: {action: "create", controller: "addresses"}, remote: true do |f|
+        .row
+          .span-2
+            %h3.destination Address
+          .span-8
           .current_street
-            =f.text_field :street
-        .w-row
-          .w-col.w-col-4
-            %h1.zip-code Zip Code
-          .w-col.w-col-8
+            =f.text_field :street, placeholder: "Your Current Address"
+        .row
+          .span-2
+            %h3.zip-code Zip Code
+          .span-8
           .current_zip_code
-            =f.text_field :zip_code
-        .w-row
-          .w-col.w-col-4
-          =f.submit 
-          .w-col.w-col-8
-  //Section 3
-  .w-container.header#third
-    .header-container
-      %h1 Who do you want to text (when you arrive)?
-    =form_for Message.new, :url => messages_path, :remote => true do |f|
-      .w-row
-        .w-col.w-col-4
-          %h1.cell Cell Phone
-        .w-col.w-col-8
-        =f.text_field :phone_number
-      .w-row
-        .w-col.w-col-4
-          %h1.cell-add + 1
-        .w-col.w-col-8
-      .w-row
-        .w-col.w-col-4
-        =f.submit
-        .w-col.w-col-8
-#panel
+            =f.text_field :zip_code, placeholder: "Zip Code"
+        .row
+          .span-2
+            =f.submit "Next!", class: "submit submit-address"
 
-#directions-panel
-#map-canvas
-.bottom
-  .w-container
-    .company TEXT ME
+  // Section 3
+  .form-section#third
+    %h2 Who do you want to text when you arrive?
+    =form_for @message, url: {action: "create", controller: "messages"}, remote: true do |f|
+      .row
+        .span-2
+          %h3.cell Cell
+        .span-8
+          =f.text_field :phone_number
+        .drive_time
+          =f.hidden_field :drive_time
+      .row
+        .span-2
+          =f.submit "Finish!", class: "button submit-message"
+  .map
+    #panel
+    #directions-panel
+    #map_canvas
