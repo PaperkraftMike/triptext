@@ -1,64 +1,53 @@
-.top
-.content
+%section.content
+
+  %header
+    %h1 TEXT ME
 
   // Section 1
-  .w-container.header#first
-    .header-container
-      %h1 Where do you want to go?
-    .w-row
-      .w-col.w-col-4
-        %h1.destination Address
-      .w-col.w-col-8
-        %input.w-input.destination-field{:type => "text", :placeholder => "Destination", :name => "street", :required => "required", :autofocus => "autofocus", :'data-name' => "street"}
-    .w-row
-      .w-col.w-col-4
-        %h1.zip-code Zip Code
-      .w-col.w-col-8
-        %input.w-input.destination-field{:type => "text", :placeholder => "Zip Code", :name => "zip_code", :required => "required", :'data-name' => "zip_code"}
-    .w-row
-      .w-col.w-col-4
-        // %form{:action => "/destination/", :method => "POST"}
-        %a.button.submit-destination{:href => "#"} Let's Go!
-      .w-col.w-col-8
+  .form-section#first
+    %h2 Where do you want to go?
+    =form_for @destination, url: {action: "create", controller: "destinations"}, remote: true do |f|
+      .row
+        .span-2
+          %h3.destination Address
+        .span-8
+          =f.text_field :street, placeholder: "Your Destination"
+      .row
+        .span-2
+          %h3.zip-code Zip Code
+        .span-8
+          =f.text_field :zip_code, placeholder: "Zip Code"
+      .row
+        .span-2
+          =f.submit "Next!", class: "submit submit-destination"
 
   // Section 2
-  .w-container.header#second
-    .header-container
-      %h1 Where are you now?
-    .w-row
-      .w-col.w-col-4
-        %h1.address Address
-      .w-col.w-col-8
-        %input.w-input.address-field{:type => "text", :placeholder => "Address", :name => "street", :required => "required", :'data-name' => "Address"}
-    .w-row
-      .w-col.w-col-4
-        %h1.zip-code Zip Code
-      .w-col.w-col-8
-        %input.w-input.address-field{:type => "text", :placeholder => "Zip Code", :name => "zip_code", :required => "required", :'data-name' => "zip_code"}
-    .w-row
-      .w-col.w-col-4
-        %form{:action => "/addresses/", :method => "POST"}
-          %button.button.submit-address{:href => "#"} Let's Go!
-      .w-col.w-col-8
+  .form-section#second
+    %h2 Where are you now?
+    =form_for @address, url: {action: "create", controller: "addresses"}, remote: true do |f|
+      .row
+        .span-2
+          %h3.destination Address
+        .span-8
+          =f.text_field :street, placeholder: "Your Current Address"
+      .row
+        .span-2
+          %h3.zip-code Zip Code
+        .span-8
+          =f.text_field :zip_code, placeholder: "Zip Code"
+      .row
+        .span-2
+          =f.submit "Next!", class: "submit submit-address"
 
-  .w-container.header#third
-    .header-container
-      %h1 Who do you want to text (when you arrive)?
-    .w-row
-      .w-col.w-col-4
-        %h1.cell Cell Phone
-      .w-col.w-col-8
-        %input.w-input.cell-field{:type => "text", :placeholder => "Number", :name => "phone_number", :required => "required", :'data-name' => "phone_number"}
-    .w-row
-      .w-col.w-col-4
-        %h1.cell-add + 1
-      .w-col.w-col-8
-    .w-row
-      .w-col.w-col-4
-        %form{:action => "/messages/", :method => "POST"}
-          %button.button.submit-cell{:href => "#"} Let's Go!
-      .w-col.w-col-8
-
-.bottom
-  .w-container
-    .company TEXT ME
+  // Section 3
+  .form-section#third
+    %h2 Who do you want to text when you arrive?
+    =form_for @message, url: {action: "create", controller: "messages"} do |f|
+      .row
+        .span-2
+          %h3.cell Cell
+        .span-8
+          =f.text_field :phone_number
+      .row
+        .span-2
+          =f.submit "Finish!", class: "button submit-message"
