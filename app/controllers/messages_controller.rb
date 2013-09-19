@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     respond_to do |format|
-      if @message.save && @message.create_number 
+      if @message.save && @message.create_number && @message.create_dispatch
         format.html { redirect_to root_path, notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
