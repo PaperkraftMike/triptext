@@ -17,6 +17,11 @@ height: 100%;
 float: right;
 width: 390px;
 overflow: auto;
+padding-left: 15px;
+}
+
+tr:nth-child(odd) {
+  background-color: #ddd;
 }
 
 
@@ -30,13 +35,13 @@ box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
 display: none;
 }
 
-#map-canvas {
+#map_canvas {
   height: 500px;
-  margin: 0;
+  width: 500px;
 }
 
 @media print {
-        #map-canvas {
+        #map_canvas {
           height: 500px;
           margin: 0;
         }
@@ -64,6 +69,7 @@ header h1 {
   position: absolute;
   left: 50%;
   margin-left: -25%;
+  text-align: center;
 }
 
 .form-section {
@@ -77,6 +83,17 @@ header h1 {
 
 #first {
   left: 50%;
+}
+
+.map {
+  opacity: 0;
+  position: absolute;
+  top: 25%;
+  left: 150%;
+  margin-left: -25%;
+  width: 50%;
+  background-color: #ccc;
+  padding: 15px;
 }
 
 .form-section h2 {
@@ -104,9 +121,9 @@ header h1 {
 
 input[type=text] {
   height: 68px;
-  padding-left: 2%;
-  width: 98%;
+  width: 70%;
   font-size: 1.5em;
+  padding-left: 20px;
   border: 0;
   background-color: rgba(0,0,0,0.25);
   border: 2px solid rgba(255,255,255,0.6);
@@ -131,6 +148,11 @@ input[type=submit] {
   float: left;
   clear: left;
   margin-top: 20px;
+}
+
+span[jsdisplay=duration] {
+  font-weight: bold;
+  color: red;
 }
 
 .span-8 {
