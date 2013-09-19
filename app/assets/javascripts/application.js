@@ -68,7 +68,7 @@ function calcRoute(start, end) {
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      $(".drive_time").val(response.routes[0].legs[0].duration);
+      console.log($(".drive_time").val(response.routes[0].legs[0].duration));
       directionsDisplay.setDirections(response);
     }
   });

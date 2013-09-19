@@ -19,8 +19,6 @@
           .w-col.w-col-8
           .destination_zip_code
             =f.text_field :zip_code
-          .drive_time
-            =f.hidden_field :drive_time
         .w-row
           .w-col.w-col-4
           =f.submit
@@ -58,6 +56,8 @@
           %h1.cell Cell Phone
         .w-col.w-col-8
         =f.text_field :phone_number
+        .drive_time
+        =f.hidden_field :drive_time
       .w-row
         .w-col.w-col-4
           %h1.cell-add + 1
