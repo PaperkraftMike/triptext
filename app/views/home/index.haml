@@ -4,45 +4,46 @@
     %h1 TEXT ME
 
   // Section 1
-<<<<<<< HEAD
-  .form-section#first
-    %h2 Where do you want to go?
-    =form_for @destination, url: {action: "create", controller: "destinations"}, remote: true do |f|
-      .row
-        .span-2
-          %h3.destination Address
-        .span-8
-        .current_street
-          =f.text_field :street, placeholder: "Your Destination"
-      .row
-        .span-2
-          %h3.zip-code Zip Code
-        .span-8
-        .current_zip_code
-          =f.text_field :zip_code, placeholder: "Zip Code"
-      .row
-        .span-2
-          =f.submit "Next!", class: "submit submit-destination"
+  .destination
+    .form-section#first
+      %h2 Where do you want to go?
+      =form_for @destination, url: {action: "create", controller: "destinations"}, remote: true do |f|
+        .row
+          .span-2
+            %h3.destination Address
+          .span-8
+          .destination_street
+            =f.text_field :street, placeholder: "Your Destination"
+        .row
+          .span-2
+            %h3.zip-code Zip Code
+          .span-8
+          .destination_zip_code
+            =f.text_field :zip_code, placeholder: "Zip Code"
+        .row
+          .span-2
+            =f.submit "Next!", class: "submit submit-destination"
 
   // Section 2
-  .form-section#second
-    %h2 Where are you now?
-    =form_for @address, url: {action: "create", controller: "addresses"}, remote: true do |f|
-      .row
-        .span-2
-          %h3.destination Address
-        .span-8
-        .destination_street
-          =f.text_field :street, placeholder: "Your Current Address"
-      .row
-        .span-2
-          %h3.zip-code Zip Code
-        .span-8
-        .destination_zip_code
-          =f.text_field :zip_code, placeholder: "Zip Code"
-      .row
-        .span-2
-          =f.submit "Next!", class: "submit submit-address"
+  .current_location
+    .form-section#second
+      %h2 Where are you now?
+      =form_for @address, url: {action: "create", controller: "addresses"}, remote: true do |f|
+        .row
+          .span-2
+            %h3.destination Address
+          .span-8
+          .current_street
+            =f.text_field :street, placeholder: "Your Current Address"
+        .row
+          .span-2
+            %h3.zip-code Zip Code
+          .span-8
+          .current_zip_code
+            =f.text_field :zip_code, placeholder: "Zip Code"
+        .row
+          .span-2
+            =f.submit "Next!", class: "submit submit-address"
 
   // Section 3
   .form-section#third
