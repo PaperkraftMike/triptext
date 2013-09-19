@@ -1,4 +1,3 @@
 class Number < ActiveRecord::Base
-  has_many :messages
-  belongs_to :user
+  belongs_to :message, :foreign_key => 'message_id'
 end
