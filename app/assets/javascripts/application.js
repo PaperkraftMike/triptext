@@ -55,7 +55,7 @@ function calcRoute(start, end) {
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      console.log($(".drive_time").val(response.routes[0].legs[0].duration));
+      $('#drive_time').val(response.routes[0].legs[0].duration.value);
       directionsDisplay.setDirections(response);
     }
   });
@@ -158,7 +158,7 @@ $('.submit-message').click(function() {
     });
 
     $('.map').animate({
-        opacity: 1
+        opacity: 1;
     }, 500);
 });
 
