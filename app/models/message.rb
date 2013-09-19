@@ -12,7 +12,8 @@ class Message < ActiveRecord::Base
       @message.save
     end
   end
-  
+end
+
   has_one :number
   has_one :addresses
   belongs_to :user

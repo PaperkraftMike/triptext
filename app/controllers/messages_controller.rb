@@ -26,9 +26,10 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
+    params.inspect
     respond_to do |format|
-      if @message.save && @message.create_number && @message.create_dispatch
+      if @message.save 
+        @message.create_number
         format.html { redirect_to root_path, notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
@@ -70,6 +71,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:category, :dispatch_on, :drive_time, :ip_address, :text, :user_id, :number_id, :address_id, :phone_number)
+      params.require(:message).permit(:category, :dispatch_on, :ip_address, :text, :user_id, :number_id, :address_id, :phone_number, :drive_time)
     end
 end
