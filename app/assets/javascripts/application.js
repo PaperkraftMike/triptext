@@ -18,29 +18,16 @@
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var map
-var geocoder_one_results
+var map;
+var geocoder_one_results;
 
-$(document).ready(function() {
-
-  parallax.add($("#first"))
-      .add($("#second"))
-      .add($("#third"));
-
-  parallax.first.onload=function(){
-    setRight("second", "Second");
-  };
-
-  parallax.second.onload=function(){
-    setRight("third", "Third");
-  };
-
-$(".submit-destination").onclick(parallax.second.left());
+/*
 
 var infowindow = new google.maps.InfoWindow(
   { 
     size: new google.maps.Size(150,50)
   });
+
 
 
 function initialize() {
@@ -103,7 +90,9 @@ function getLatLong(address, callback){
        });
   }
 
+  */
 
+/*
 
 $(".current_location").submit(function(){
   c_street = $(".current_location_street").val();
@@ -114,23 +103,9 @@ $(".current_location").submit(function(){
   getLatLong(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
   
   return false;
-});
+}); */
 
-$(".destination").submit(function(){
-  window.full_destination = d_street + " " + d_city +  " "  + d_zip_code + " " + d_state
-  calcRoute();
-  return false;
-});
-
-
-$(".destination").change(function(){
-  window.d_street = $(".destination_street").val();
-  window.d_city = $(".destination_city").val();
-  window.d_zip_code = $(".destination_zip_code").val();
-  window.d_state = $(".destination_state").val();
-});
-
-google.maps.event.addDomListener(window, 'load', initialize);
+// google.maps.event.addDomListener(window, 'load', initialize);
 
 // $('form').submit(function() {  
 //     var valuesToSubmit = $(this).serialize();
@@ -144,7 +119,32 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //     return false; // prevents normal behaviour
 // });
 
+console.log("HERRO");
+
+$('.submit-destination').click(function() {
+
+    console.log("Test!!!");
+
+    $('#first').animate({
+        left: '-50%'
+    }, 500, function() {
+        $('#first').css('display', 'none');
+    });
+
+    $('#second').animate({
+        left: '50%'
+    }, 500);
 });
 
+$('.submit-address').click(function() {
 
+    $('#second').animate({
+        left: '-50%'
+    }, 500, function() {
+        $('#second').css('display', 'none');
+    });
 
+    $('#third').animate({
+        left: '50%'
+    }, 500);
+});
