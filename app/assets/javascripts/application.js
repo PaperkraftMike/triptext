@@ -21,7 +21,8 @@ var directionsService = new google.maps.DirectionsService();
 var map;
 var geocoder_one_results;
 
-/*
+
+$(document).ready(function() {
 
 var infowindow = new google.maps.InfoWindow(
   { 
@@ -35,7 +36,7 @@ function initialize() {
   var mapOptions = {
     zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: new google.maps.LatLng(41.850033, -87.6500523)
+    center: new google.maps.LatLng(40.6700, -73.9400)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -47,9 +48,7 @@ function initialize() {
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 }
 
-function calcRoute() {
-  var start = full_current_location
-  var end = full_destination
+function calcRoute(start, end) {
   var request = {
       origin:start,
       destination:end,
@@ -57,6 +56,7 @@ function calcRoute() {
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+      console.log($(".drive_time").val(response.routes[0].legs[0].duration));
       directionsDisplay.setDirections(response);
     }
   });
@@ -79,45 +79,51 @@ function createMarker(latlng, name, html) {
     return marker;
 }
 
-function getLatLong(address, callback){
+function getLatLong_destination(address, callback){
       var geo = new google.maps.Geocoder;
       geo.geocode({'address':address},function(results, status){
               if (status == google.maps.GeocoderStatus.OK) {
-                callback(results, "my pin", "a great pin")
+                callback(results, "Destination Pin", "Destination")
               } else {
                 alert("Geocode was not successful for the following reason: " + status);
               }
        });
   }
 
-  */
+function getLatLong_current(address, callback){
+      var geo = new google.maps.Geocoder;
+      geo.geocode({'address':address},function(results, status){
+              if (status == google.maps.GeocoderStatus.OK) {
+                callback(results, "Current Location Pin", "Current Location")
+              } else {
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+       });
+  }
 
-/*
+
+
+
+$(".destination").submit(function(){
+  d_street = $(".destination_street input[type='text']").val();
+  d_zip_code = $(".destination_zip_code input[type='text']").val();
+  full_destination = d_street + d_zip_code
+  getLatLong_destination(full_destination, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+
 
 $(".current_location").submit(function(){
-  c_street = $(".current_location_street").val();
-  c_city = $(".current_location_city").val();
-  c_zip_code = $(".current_location_zip_code").val();
-  c_state = $(".current_location_state").val();
-  full_current_location = c_street + " " + c_city +  " "  + c_zip_code + " " + c_state
-  getLatLong(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
-  
-  return false;
-}); */
+  c_street = $(".current_street input[type='text']").val();
+  c_zip_code = $(".current_zip_code input[type='text']").val();
+  full_current_location = c_street + ", " + c_zip_code
+  getLatLong_current(full_current_location, function(geocoder_one_results, pin_caption, pin_caption_two){createMarker(geocoder_one_results, pin_caption, pin_caption_two)})
+  calcRoute(full_current_location, full_destination);
+});
 
-// google.maps.event.addDomListener(window, 'load', initialize);
+});
 
-// $('form').submit(function() {  
-//     var valuesToSubmit = $(this).serialize();
-//     $.ajax({
-//         url: $(this).attr('action'), //sumbits it to the given url of the form
-//         data: valuesToSubmit,
-//         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-//     }).success(function(json){
 
-//     });
-//     return false; // prevents normal behaviour
-// });
+google.maps.event.addDomListener(window, 'load', initialize);
+
 
 console.log("HERRO");
 
@@ -147,4 +153,5 @@ $('.submit-address').click(function() {
     $('#third').animate({
         left: '50%'
     }, 500);
+});
 });

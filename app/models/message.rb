@@ -1,7 +1,6 @@
 class Message < ActiveRecord::Base
-  attr_accessor :phone_number
+  attr_accessor :phone_number, :drive_time
 
-  require 'twilio-ruby'
 
   
   def create_number
@@ -10,18 +9,13 @@ class Message < ActiveRecord::Base
       @number.save && @number.messages << Message.last
     end
   end
-  
 
-  def send_text
-    @current_message = Message.last
-    @twilio_sid = ENV['TWILIO_ACCOUNT_SID']
-    @twilio_auth_token = ENV['TWILIO_AUTH_TOKEN']
-    @client = Twilio::REST::Client.new(@twilio_sid.to_s.strip, @twilio_auth_token.to_s.strip)
-      @client.account.sms.messages.create(
-        :from => ENV['TWILIO_NUMBER'],
-        :to => Number.find(@current_message.number_id).phone_number,
-        :body => @current_message.text
-      )
+  def create_dispatch
+   if drive_time.present?
+      @message = Message.where(phone_number: phone_number);
+      @message.dispath_on = (DateTime.now + drive_time.value);
+      @message.save
+    end
   end
 
   
