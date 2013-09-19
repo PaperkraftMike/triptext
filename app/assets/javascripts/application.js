@@ -75,8 +75,6 @@ $(document).ready(function() {
       return marker;
   }
 
-  /*
-
   function getLatLong_destination(address, callback){
         var geo = new google.maps.Geocoder;
         geo.geocode({'address':address},function(results, status){
@@ -99,8 +97,6 @@ $(document).ready(function() {
                 }
          });
     }
-
-  */
 
 
   $(".destination").submit(function(){
@@ -156,7 +152,7 @@ $(document).ready(function() {
       });
 
       $('.map').animate({
-          opacity: 1;
+          opacity: 1
       }, 500);
   });
 });

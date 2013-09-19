@@ -61,17 +61,6 @@ body {
 }
 
 header h1 {
-<<<<<<< HEAD
-  text-align: center;
-  color: white;
-  font-size: 5em;
-  padding: 25px;
-  width: 50%;
-  position: absolute;
-  left: 50%;
-  margin-left: -25%;
-=======
->>>>>>> e686e1e7a306ff91a0da178a209f7a0545b03e9b
   text-align: center;
   color: white;
   font-size: 5em;
@@ -89,7 +78,6 @@ header h1 {
   margin-left: -25%;
   top: 25%;
   padding: 30px;
-<<<<<<< HEAD
 }
 
 #first {
@@ -105,12 +93,10 @@ header h1 {
   width: 50%;
   background-color: #ccc;
   padding: 15px;
-=======
 }
 
 #first {
   left: 50%;
->>>>>>> e686e1e7a306ff91a0da178a209f7a0545b03e9b
 }
 
 .form-section h2 {
@@ -138,19 +124,11 @@ header h1 {
 
 input[type=text] {
   height: 68px;
-<<<<<<< HEAD
-  width: 70%;
-  font-size: 1.5em;
-  padding-left: 20px;
-=======
   padding-left: 2%;
-  width: 98%;
+  width: 100%;
   font-size: 1.5em;
->>>>>>> e686e1e7a306ff91a0da178a209f7a0545b03e9b
-  border: 0;
   background-color: rgba(0,0,0,0.25);
   border: 2px solid rgba(255,255,255,0.6);
-  border-left: 0;
   color: white;
 }
 
@@ -173,14 +151,11 @@ input[type=submit] {
   margin-top: 20px;
 }
 
-<<<<<<< HEAD
 span[jsdisplay=duration] {
   font-weight: bold;
   color: red;
 }
 
-=======
->>>>>>> e686e1e7a306ff91a0da178a209f7a0545b03e9b
 .span-8 {
   width: 80%;
   float: left;
