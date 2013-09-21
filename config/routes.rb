@@ -1,14 +1,14 @@
 TextMe::Application.routes.draw do
   root :to => "home#index"
 
-  resources :users 
+  resources :users
 
   resources :messages
-  
+
   resources :contacts
 
   resources :addresses
-  
+
   resources :destinations
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -51,7 +51,7 @@ TextMe::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   attr_accessor :phone_number, :drive_time
-  
+
   def create_number
     if phone_number.present?
       @number = Number.new(:phone_number => phone_number, :message_id => Message.last.id)

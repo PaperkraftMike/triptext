@@ -31,7 +31,7 @@ class DestinationsController < ApplicationController
         format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
         format.json { render action: 'show', status: :created, location: @destination }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.json { render json: @destination.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class DestinationsController < ApplicationController
         format.html { redirect_to @destination, notice: 'Destination was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @destination.errors, status: :unprocessable_entity }
       end
     end

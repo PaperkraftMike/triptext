@@ -31,7 +31,7 @@ class NumbersController < ApplicationController
         format.html { redirect_to @number, notice: 'Number was successfully created.' }
         format.json { render action: 'show', status: :created, location: @number }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.json { render json: @number.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class NumbersController < ApplicationController
         format.html { redirect_to @number, notice: 'Number was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @number.errors, status: :unprocessable_entity }
       end
     end

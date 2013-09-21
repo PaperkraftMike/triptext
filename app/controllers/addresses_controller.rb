@@ -31,7 +31,7 @@ class AddressesController < ApplicationController
         format.html { redirect_to root_path, notice: 'Address was successfully created.' }
         format.json { render action: 'show', status: :created, location: @addresses }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.json { render json: @addresses.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class AddressesController < ApplicationController
         format.html { redirect_to @address, notice: 'Address was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @addresses.errors, status: :unprocessable_entity }
       end
     end

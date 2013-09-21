@@ -7,5 +7,8 @@ class CreateNumbers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :numbers, :message_id
+    add_index :numbers, :user_id
   end
 end

@@ -11,5 +11,9 @@ class CreateMessages < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :messages, :user_id
+    add_index :messages, :number_id
+    add_index :messages, :address_id
   end
 end
