@@ -7,12 +7,14 @@ class Message < ActiveRecord::Base
       @number.save
     if drive_time.present?
       @message = Message.find(@number.message_id);
-      @message.dispatch_on = @message.created_at;
+      @message.dispatch_on = @message.created_at
       @message.dispatch_on = @message.dispatch_on + drive_time.to_i
       @message.save
     end
   end
 end
+
+
 
   has_one :number
   validates_associated :number
