@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130911003548) do
-
-  create_table "addresses", force: true do |t|
-    t.string   "zip_code"
-    t.string   "state"
-    t.string   "lat_long"
-    t.string   "city"
-    t.string   "street"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-  end
+ActiveRecord::Schema.define(version: 20130922135205) do
 
   create_table "contacts", force: true do |t|
     t.string   "fname"
@@ -38,13 +25,13 @@ ActiveRecord::Schema.define(version: 20130911003548) do
   add_index "contacts", ["address_id"], name: "index_contacts_on_address_id"
   add_index "contacts", ["number_id"], name: "index_contacts_on_number_id"
 
-  create_table "destinations", force: true do |t|
+  create_table "locations", force: true do |t|
     t.string   "zip_code"
-    t.string   "state"
-    t.string   "city"
+    t.string   "lat_long"
     t.string   "street"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "gmaps"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

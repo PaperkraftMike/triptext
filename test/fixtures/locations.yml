@@ -2,16 +2,16 @@
 
 one:
   zip_code: MyString
-  state: MyString
-  city: MyString
+  lat_long: MyString
   street: MyString
   latitude: 1.5
   longitude: 1.5
+  gmaps: false
 
 two:
   zip_code: MyString
-  state: MyString
-  city: MyString
+  lat_long: MyString
   street: MyString
   latitude: 1.5
   longitude: 1.5
+  gmaps: false

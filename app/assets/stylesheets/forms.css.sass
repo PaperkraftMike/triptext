@@ -1,0 +1,98 @@
+body
+  background-image: url(2507084575_1c3b520074_o.jpg)
+  background-position: 50% 50%
+  background-size: cover
+  background-attachment: fixed
+  font-family: 'Helvetica Neue', sans-serif
+  color: rgba(255,255,255,1)
+
+header h1
+  position: absolute
+  left: 50%
+  width: 100%
+  margin: 0
+  padding: 0
+  margin-top: 5%
+  margin-left: -50%
+  text-align: center
+
+.form_section, .map
+  position: absolute
+  left: 150%
+  width: 50%
+  margin-top: 15%
+  margin-left: -25%
+
+#first
+  left: 50%
+
+.form_section h2, h3
+  background: rgba(0,0,0,1)
+  border: 1px solid rgba(255,255,255,0.5)
+  text-align: center
+  text-transform: uppercase
+
+.form_section h2
+  padding: 2%
+
+.form_section h3
+  border-right: 0
+  margin: 0
+  padding: 1em
+
+input
+  width: 100%
+  padding: 0
+  margin: 0
+
+input[type=text]
+  background-color: rgba(0,0,0,0.25)
+  border: 1px solid rgba(255,255,255,0.5)
+  color: white
+  padding: 0.7em
+
+input[type=submit]
+  background-color: rgba(0,0,0,1)
+  border: 1px solid rgba(255,255,255,0.75)
+  text-transform: uppercase
+  font-weight: bold
+  color: white
+  padding: 1em
+
+.parsley-error
+  border: 1px solid rgba(255, 0, 0, 0.5) !important
+
+ul.parsley-error-list
+  list-style-type: none
+
+.to_street .parsley-error-list, .to_zip_code .parsley-error-list, #cell .parsley-error-list
+  background-color: rgba(255,0,0,0.5)
+  margin: 0
+  padding: 0
+  width: 50%
+  .custom-error-message
+    padding: 15px
+
+#to_error
+  display: none
+
+.span-2
+  width: 20%
+  float: left
+  clear: left
+  margin-top: 1%
+
+.span-8
+  width: 80%
+  float: left
+  margin-top: 1%
+  clear: right
+
+\::-webkit-input-placeholder
+  color: rgba(255,255,255,1)
+\::-moz-placeholder
+  color: rgba(255,255,255,1)
+\:-ms-input-placeholder
+  color: rgba(255,255,255,1)
+input:-moz-placeholder
+  color: rgba(255,255,255,1)

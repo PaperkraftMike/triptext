@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Zip code:
+  = @location.zip_code
+%p
+  %b Lat long:
+  = @location.lat_long
+%p
+  %b Street:
+  = @location.street
+%p
+  %b Latitude:
+  = @location.latitude
+%p
+  %b Longitude:
+  = @location.longitude
+%p
+  %b Gmaps:
+  = @location.gmaps
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path

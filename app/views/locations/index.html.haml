@@ -1,0 +1,29 @@
+%h1 Listing locations
+
+%table
+  %tr
+    %th Zip code
+    %th Lat long
+    %th Street
+    %th Latitude
+    %th Longitude
+    %th Gmaps
+    %th
+    %th
+    %th
+
+  - @locations.each do |location|
+    %tr
+      %td= location.zip_code
+      %td= location.lat_long
+      %td= location.street
+      %td= location.latitude
+      %td= location.longitude
+      %td= location.gmaps
+      %td= link_to 'Show', location
+      %td= link_to 'Edit', edit_location_path(location)
+      %td= link_to 'Destroy', location, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Location', new_location_path

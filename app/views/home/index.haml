@@ -4,56 +4,55 @@
     %h1 TEXT ME
 
   // Section 1
-  .destination
-    .form-section#first
-      %h2 Where do you want to go?
-      =form_for @destination, url: {action: "create", controller: "destinations"}, remote: true do |f|
-        .row
-          .span-2
-            %h3.destination Address
-          .span-8
-            .destination_street
-              =f.text_field :street, placeholder: "Your Destination"
-        .row
-          .span-2
-            %h3.zip-code Zip Code
-          .span-8
-            .destination_zip_code
-              =f.text_field :zip_code, placeholder: "Zip Code"
-        .row
-          .span-2
-            =f.submit "Next!", class: "submit submit-destination"
-
-  // Section 2
-  .current_location
-    .form-section#second
-      %h2 Where are you now?
-      =form_for @address, url: {action: "create", controller: "addresses"}, remote: true do |f|
-        .row
-          .span-2
-            %h3.destination Address
-          .span-8
-            .current_street
-              =f.text_field :street, placeholder: "Your Current Address"
-        .row
-          .span-2
-            %h3.zip-code Zip Code
-          .span-8
-            .current_zip_code
-              =f.text_field :zip_code, placeholder: "Zip Code"
-        .row
-          .span-2
-            =f.submit "Next!", class: "submit submit-address"
-
-  // Section 3
-  .form-section#third
-    %h2 Who do you want to text when you arrive?
-    =form_for @message, url: {action: "create", controller: "messages"}, remote: true do |f|
+  .form_section#first
+    %h2 Where do you want to go?
+    =form_for Location.new, :'data-validate' => "parsley", url: {action: "create", controller: "locations"}, remote: true do |f|
       .row
         .span-2
-          %h3.cell Cell
+          %h3.address Address
         .span-8
-          =f.text_field :phone_number
+          .to_street
+            =f.text_field :street, placeholder: "Your Destination", :'data-required' => true, :'data-notblank' => "true", :'data-error-message' => "You must provide a valid US Address."
+      .row
+        .span-2
+          %h3.zip Zip Code
+        .span-8
+          .to_zip_code
+            =f.text_field :zip_code, placeholder: "Zip Code", :'data-required' => true, :'data-notblank' => "true", :'data-error-message' => "You must provide a valid US Zip Code."
+      .row
+        .span-2
+          =f.submit "Next!", class: "submit submit-to", :'data-error-container' => "#to_error", :'data-error-message' => "Please check the errors before continuing."
+        .span-8#to_error
+
+  // Section 2
+  .form_section#second
+    %h2 Where are you now?
+    =form_for Location.new, :'data-validate' => "parsley", url: {action: "create", controller: "locations"}, remote: true do |f|
+      .row
+        .span-2
+          %h3.address Address
+        .span-8
+          .from_street
+            =f.text_field :street, placeholder: "Your Current Address", :'data-required' => true, :'data-notblank' => "true", :'data-error-message' => "You must provide a valid US Address."
+      .row
+        .span-2
+          %h3.zip Zip Code
+        .span-8
+          .from_zip_code
+            =f.text_field :zip_code, placeholder: "Zip Code", :'data-required' => true, :'data-notblank' => "true", :'data-error-message' => "You must provide a valid US Zip Code."
+      .row
+        .span-2
+          =f.submit "Next!", class: "submit submit-from"
+
+  // Section 3
+  .form_section#third
+    %h2 Who do you want to text when you arrive?
+    =form_for Message.new, :'data-validate' => "parsley", url: {action: "create", controller: "messages"}, remote: true do |f|
+      .row
+        .span-2
+          %h3.cell_phone Cell
+        .span-8#cell
+          =f.text_field :phone_number, :'data-type' => 'phone', :'data-required' => true, :'data-notblank' => "true", :'data-error-message' => "You must provide a valid US Cell Phone Number."
         .drive_time
           =f.hidden_field :drive_time, id: 'drive_time'
       .row

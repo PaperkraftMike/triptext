@@ -15,6 +15,8 @@ class Message < ActiveRecord::Base
 end
 
   has_one :number
+  validates_associated :number
   has_one :addresses
+  validates_associated :addresses
   belongs_to :user
 end
