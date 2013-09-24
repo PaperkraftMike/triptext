@@ -13,7 +13,9 @@ task :check_messages => :environment do
               :to => "#{Number.find(t.number).phone_number}",
               :body => "I'm just around the corner. I'll be there soon."
             )
-          t.confirmation = true
+          @message = Message.find(t.id)
+          @message.confirmation = true
+          @message.save
           end
         end
       end
