@@ -9,7 +9,7 @@ task :check_messages => :environment do
           @twilio_auth_token = TWILIO_AUTH_TOKEN
           @client = Twilio::REST::Client.new(@twilio_sid.to_s.strip, @twilio_auth_token.to_s.strip)
             @client.account.sms.messages.create(
-              :from => TWILIO_NUMBER
+              :from => TWILIO_NUMBER,
               :to => "#{Number.find(t.number).phone_number}",
               :body => "I'm just around the corner. I'll be there soon."
             )
