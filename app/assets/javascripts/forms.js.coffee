@@ -7,11 +7,8 @@ $(document).ready ->
   $('input[type=submit]').fitText()
   $('input[type=text]').fitText(4)
 
-  $(".map").fadeOut
-
-  $("#first form").submit (e) ->
-    e.preventDefault()
-    if $(this).parsley( 'isValid' )
+  $("#first form").bind "ajax:complete", (evt, xhr, status) ->
+    if status is 'success'
       $("#first").animate
         left: "-50%"
       , 500, ->
@@ -20,10 +17,18 @@ $(document).ready ->
       $("#second").animate
         left: "50%"
       , 500
+    else 
+      errors = $.parseJSON(xhr.responseText).errors
+      $("#to_street_error").empty()
+      $("#to_zip_error").empty()
+      if errors.street
+        $("#to_street_error").html errors.street
+      if errors.zip_code
+        $("#to_zip_error").html errors.zip_code
 
-  $("#second form").submit (e) ->
-    e.preventDefault()
-    if $(this).parsley("validate")
+
+  $("#second form").bind "ajax:complete", (evt, xhr, status) ->
+    if status is 'success'
       $("#second").animate
         left: "-50%"
       , 500, ->
@@ -32,13 +37,20 @@ $(document).ready ->
       $("#third").animate
         left: "50%"
       , 500
-  
-  $("#third form").submit (e) ->
-    e.preventDefault()
-    if $(this).parsley("validate")
+    else 
+      errors = $.parseJSON(xhr.responseText).errors
+      $("#from_street_error").html errors.street
+      $("#from_zip_error").html errors.zip_code
+
+  $("#third form").bind "ajax:complete", (evt, xhr, status) ->
+    console.log(status)
+    if status is 'success'
       $("#third").animate
         left: "-50%"
       , 500, ->
         $("#third").css "display", "none"
         $(".map").css "left", "50%"
-      $(".map").fadeIn
+        $(".map").fadeIn
+    else 
+      errors = $.parseJSON(xhr.responseText).errors
+      $("#from_phone_error").html errors.phone_number

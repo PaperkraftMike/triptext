@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  respond_to :json
 
 
   # GET /messages
@@ -26,17 +27,10 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    params.inspect
-    respond_to do |format|
-      if @message.save
-        @message.create_number
-        format.html { redirect_to root_path, notice: 'Message was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @message }
-      else
-        format.html { render 'new' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      @message.create_number(@message.id)
     end
+    respond_with(@message)
   end
 
   # PATCH/PUT /messages/1
@@ -44,10 +38,8 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render 'edit' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +56,7 @@ class MessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_message
       @message = Message.find(params[:id])
     end

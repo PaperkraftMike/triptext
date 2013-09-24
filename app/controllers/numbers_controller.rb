@@ -1,5 +1,6 @@
 class NumbersController < ApplicationController
   before_action :set_number, only: [:show, :edit, :update, :destroy]
+  respond_to :json
 
   # GET /numbers
   # GET /numbers.json
@@ -25,16 +26,8 @@ class NumbersController < ApplicationController
   # POST /numbers.json
   def create
     @number = Number.new(number_params)
-
-    respond_to do |format|
-      if @number.save
-        format.html { redirect_to @number, notice: 'Number was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @number }
-      else
-        format.html { render 'new' }
-        format.json { render json: @number.errors, status: :unprocessable_entity }
-      end
-    end
+    @number.save
+    respond_with(@number)
   end
 
   # PATCH/PUT /numbers/1

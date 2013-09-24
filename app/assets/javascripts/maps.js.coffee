@@ -77,7 +77,7 @@ $(document).ready ->
 
   infowindow = new google.maps.InfoWindow(size: new google.maps.Size(150, 50))
 
-  $(".submit-to").submit ->
+  $("#first form").bind "ajax:complete", () ->
     d_street =          $(".to_street input").val()
     d_zip_code =        $(".to_zip_code input").val()
     full_destination =  d_street + d_zip_code
@@ -85,12 +85,12 @@ $(document).ready ->
     getLatLong_destination full_destination, (geocoder_one_results, pin_caption, pin_caption_two) ->
       createMarker geocoder_one_results, pin_caption, pin_caption_two
 
-  $(".submit-from").submit ->
+  $("#second form").bind "ajax:complete", () ->
       c_street =                $(".from_street input").val()
       c_zip_code =              $(".from_zip_code input").val()
-      full_origin_location =   c_street + ", " + c_zip_code
+      full_origin_location =    c_street + ", " + c_zip_code
 
-      getLatLong_current full_origin_location, (geocoder_one_results, pin_caption, pin_caption_two) ->
+      getLatLong_origin full_origin_location, (geocoder_one_results, pin_caption, pin_caption_two) ->
         createMarker geocoder_one_results, pin_caption, pin_caption_two
 
       calcRoute full_origin_location, full_destination
