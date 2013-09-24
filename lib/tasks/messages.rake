@@ -2,14 +2,14 @@ namespace :messages do
 
 task :check_messages => :environment do
   Message.find_each do |t|
-      if !t.dispatch_on.nil? && t.confirmation.nil? && t.id.present? && !t.number.nil?
+      if t.confirmation.nil?
         if t.dispatch_on - 5.minutes <= DateTime.now
           require 'twilio-ruby'
-          @twilio_sid = ENV['TWILIO_ACCOUNT_SID']
-          @twilio_auth_token = ENV['TWILIO_AUTH_TOKEN']
+          @twilio_sid = TWILIO_ACCOUNT_SID
+          @twilio_auth_token = TWILIO_AUTH_TOKEN
           @client = Twilio::REST::Client.new(@twilio_sid.to_s.strip, @twilio_auth_token.to_s.strip)
             @client.account.sms.messages.create(
-              :from => ENV['TWILIO_NUMBER'],
+              :from => TWILIO_NUMBER
               :to => "#{Number.find(t.number).phone_number}",
               :body => "I'm just around the corner. I'll be there soon."
             )
