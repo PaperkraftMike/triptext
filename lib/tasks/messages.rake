@@ -1,7 +1,7 @@
 namespace :messages do
 
 task :check_messages => :environment do
-  Message.find_each do |t|
+  Message.all.each do |t|
       if t.confirmation.nil? && !t.dispatch_on.nil?
         if t.dispatch_on - 5.minutes <= DateTime.now
           require 'twilio-ruby'
