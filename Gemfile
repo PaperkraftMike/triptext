@@ -22,6 +22,9 @@ gem 'twilio-ruby'
 # Chronic gem
 gem 'chronic'
 
+# Use Haml for views
+gem 'haml'
+gem 'haml-rails'
 
 # omnicontacts for importing contacts
 gem 'omnicontacts'
@@ -51,7 +54,4 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 4.0.0'
-  # Use Haml for views
-  gem 'haml'
-  gem 'haml-rails'
 end
