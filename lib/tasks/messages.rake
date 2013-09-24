@@ -15,7 +15,6 @@ task :check_messages => :environment do
             )
           t.confirmation = true
           t.save
-          $number += 1 
           end
         end
       end
