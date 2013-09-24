@@ -23,7 +23,7 @@ $(document).ready ->
 
   $("#second form").submit (e) ->
     e.preventDefault()
-    if $(this).parsley("validate")
+    if $(this).parsley("validate") 
       $("#second").animate
         left: "-50%"
       , 500, ->

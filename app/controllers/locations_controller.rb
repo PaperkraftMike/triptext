@@ -4,21 +4,23 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    redirect_to root_path
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /locations/new
   def new
-    @location = Location.new
+    redirect_to root_path
   end
 
   # GET /locations/1/edit
   def edit
+    redirect_to root_path
   end
 
   # POST /locations
@@ -40,25 +42,13 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-    respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to root_path
   end
 
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.destroy
-    respond_to do |format|
-      format.html { redirect_to locations_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_path
   end
 
   private
