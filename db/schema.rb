@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20130920004957) do
-
-  create_table "addresses", force: true do |t|
-    t.string   "zip_code"
-    t.string   "state"
-    t.string   "lat_long"
-    t.string   "city"
-    t.string   "street"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-  end
->>>>>>> Stashed changes
+ActiveRecord::Schema.define(version: 20130924091215) do
 
   create_table "contacts", force: true do |t|
     t.string   "fname"
@@ -59,6 +44,7 @@ ActiveRecord::Schema.define(version: 20130920004957) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "confirmation"
+    t.integer  "drive_time"
   end
 
   create_table "numbers", force: true do |t|

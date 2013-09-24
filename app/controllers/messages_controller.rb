@@ -30,7 +30,9 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
-      @message.create_number(@message.id)
+      @message.dispatch_on = @message.created_at + @message.drive_time
+      @message.save
+      @message.create_number
     end
     respond_with(@message)
   end
