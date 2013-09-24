@@ -61,8 +61,6 @@ $(document).ready ->
     , (results, status) ->
       if status is google.maps.GeocoderStatus.OK
         callback results, "Destination Pin", "Destination"
-      else
-        alert "Geocode was not successful for the following reason: " + status
 
 
   getLatLong_origin = (address, callback) ->
@@ -72,8 +70,6 @@ $(document).ready ->
     , (results, status) ->
       if status is google.maps.GeocoderStatus.OK
         callback results, "Origin Location Pin", "Origin Location"
-      else
-        alert "Geocode was not successful for the following reason: " + status
 
   infowindow = new google.maps.InfoWindow(size: new google.maps.Size(150, 50))
 

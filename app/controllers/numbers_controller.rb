@@ -5,21 +5,23 @@ class NumbersController < ApplicationController
   # GET /numbers
   # GET /numbers.json
   def index
-    @numbers = Number.all
+    redirect_to root_path
   end
 
   # GET /numbers/1
   # GET /numbers/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /numbers/new
   def new
-    @number = Number.new
+    redirect_to root_path
   end
 
   # GET /numbers/1/edit
   def edit
+    redirect_to root_path
   end
 
   # POST /numbers
@@ -33,25 +35,13 @@ class NumbersController < ApplicationController
   # PATCH/PUT /numbers/1
   # PATCH/PUT /numbers/1.json
   def update
-    respond_to do |format|
-      if @number.update(number_params)
-        format.html { redirect_to @number, notice: 'Number was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render 'edit' }
-        format.json { render json: @number.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to root_path
   end
 
   # DELETE /numbers/1
   # DELETE /numbers/1.json
   def destroy
-    @number.destroy
-    respond_to do |format|
-      format.html { redirect_to numbers_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_path
   end
 
   private
