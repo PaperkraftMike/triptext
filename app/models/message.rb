@@ -23,8 +23,7 @@ class Message < ActiveRecord::Base
               :body => "I'm just around the corner. I'll be there soon."
             )
           @message = Message.find(t.id)
-          @message.confirmation = true
-          @message.save
+          @message.update_attribute(:confirmation, true)
           end
         end
       end
