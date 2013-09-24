@@ -14,7 +14,6 @@ task :check_messages => :environment do
               :body => "I'm just around the corner. I'll be there soon."
             )
           t.confirmation = true
-          t.save
           end
         end
       end
