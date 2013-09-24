@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
     @number.save
   end
 
-  def send_messages
+  def self.send_messages
     Message.all.each do |t|
       if t.confirmation.nil? && !t.dispatch_on.nil?
         if t.dispatch_on - 5.minutes <= DateTime.now
@@ -22,9 +22,9 @@ class Message < ActiveRecord::Base
               :to => "#{Number.find(t.number).phone_number}",
               :body => "I'm just around the corner. I'll be there soon."
             )
-          message = Message.find(t.id)
-          message.confirmation = true
-          message.save
+          @message = Message.find(t.id)
+          @message.confirmation = true
+          @message.save
           end
         end
       end
