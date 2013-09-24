@@ -12,9 +12,6 @@ group :production do
   gem 'pg'
 end
 
-# Use Haml for views
-gem 'haml'
-gem 'haml-rails'
 
 # Geocoder gem
 gem 'geocoder'
@@ -54,4 +51,7 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 4.0.0'
+  # Use Haml for views
+  gem 'haml'
+  gem 'haml-rails'
 end
