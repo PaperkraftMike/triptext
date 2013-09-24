@@ -1,13 +1,9 @@
 TextMe::Application.routes.draw do
-  resources :locations
 
   root :to => "home#index"
 
-  resources :users
 
   resources :messages
-
-  resources :contacts
 
   resources :locations
 

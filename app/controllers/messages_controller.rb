@@ -6,21 +6,23 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    redirect_to root_path
   end
 
   # GET /messages/1
   # GET /messages/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /messages/new
   def new
-    @message = Message.new
+    redirect_to root_path
   end
 
   # GET /messages/1/edit
   def edit
+    redirect_to root_path
   end
 
   # POST /messages
@@ -36,23 +38,13 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1
   # PATCH/PUT /messages/1.json
   def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.json { head :no_content }
-      else
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to root_path
   end
 
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy
-    @message.destroy
-    respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_path
   end
 
   private

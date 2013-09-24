@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922135205) do
+
+ActiveRecord::Schema.define(version: 20130920004957) do
+
+  create_table "addresses", force: true do |t|
+    t.string   "zip_code"
+    t.string   "state"
+    t.string   "lat_long"
+    t.string   "city"
+    t.string   "street"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+  end
+>>>>>>> Stashed changes
 
   create_table "contacts", force: true do |t|
     t.string   "fname"
@@ -21,9 +36,6 @@ ActiveRecord::Schema.define(version: 20130922135205) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "contacts", ["address_id"], name: "index_contacts_on_address_id"
-  add_index "contacts", ["number_id"], name: "index_contacts_on_number_id"
 
   create_table "locations", force: true do |t|
     t.string   "zip_code"
@@ -46,11 +58,8 @@ ActiveRecord::Schema.define(version: 20130922135205) do
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirmation"
   end
-
-  add_index "messages", ["address_id"], name: "index_messages_on_address_id"
-  add_index "messages", ["number_id"], name: "index_messages_on_number_id"
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "numbers", force: true do |t|
     t.integer  "user_id"
@@ -59,9 +68,6 @@ ActiveRecord::Schema.define(version: 20130922135205) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "numbers", ["message_id"], name: "index_numbers_on_message_id"
-  add_index "numbers", ["user_id"], name: "index_numbers_on_user_id"
 
   create_table "users", force: true do |t|
     t.boolean  "banned"

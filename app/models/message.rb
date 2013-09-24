@@ -1,6 +1,5 @@
 class Message < ActiveRecord::Base
   attr_accessor :phone_number, :drive_time
-
   validates :phone_number, :presence => { :message => "You must provide a valid US Cell phone number." }
   validates :drive_time, presence: true
 
