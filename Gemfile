@@ -12,6 +12,7 @@ gem 'resque', '1.24.1'
 gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'rufus-scheduler'
 gem 'mono_logger'
+gem 'sucker_punch', '~> 1.0'
 
 group :development, :test do
   gem 'pg', '0.15.1'
