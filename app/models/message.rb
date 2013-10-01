@@ -1,34 +1,18 @@
 class Message < ActiveRecord::Base
-  attr_accessor :phone_number
-  validates :phone_number, :presence => { :message => "You must provide a valid US Cell phone number." }
-  validates :drive_time, presence: true
+  validates :phone_number, presence: true
+  # TODO scope :queued, -> { where(sent: false)}
 
-  def create_number
-    @message = Message.last
-    @number = Number.create(phone_number: phone_number, message_id: @message.id)
-    @number.save
-  end
+  after_save :dispatch
 
-  def self.send_messages
-    Message.all.each do |t|
-      if t.confirmation.nil? && !t.dispatch_on.nil?
-        if t.dispatch_on - 5.minutes <= DateTime.now
-          require 'twilio-ruby'
-          twilio_sid = ENV['TWILIO_ACCOUNT_SID']
-          twilio_auth_token = ENV['TWILIO_AUTH_TOKEN']
-          client = Twilio::REST::Client.new(twilio_sid.to_s.strip, twilio_auth_token.to_s.strip)
-            client.account.sms.messages.create(
-              :from => ENV['TWILIO_NUMBER'],
-              :to => "#{Number.find(t.number).phone_number}",
-              :body => "I'm just around the corner. I'll be there soon."
-            )
-          @message = Message.find(t.id)
-          @message.update_attribute(:confirmation, true)
-          end
-        end
-      end
+  private
+
+    def dispatch
+      self.dispatch_on = Time.now + t_minus_five_minutes(self.drive_time)
+      Resque.enqueue_at(self.dispatch_on, DispatchMessage, :number => self.phone_number)
     end
 
-  has_one :number
-  has_one :addresses
+    def t_minus_five_minutes(time)
+      ((time - 300) > 0) ? (time - 300) : 0
+    end
+
 end

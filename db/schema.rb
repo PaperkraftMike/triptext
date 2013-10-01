@@ -11,54 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924091215) do
+ActiveRecord::Schema.define(version: 20130927063224) do
 
-  create_table "contacts", force: true do |t|
-    t.string   "fname"
-    t.string   "lname"
-    t.integer  "address_id"
-    t.integer  "number_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "locations", force: true do |t|
-    t.string   "zip_code"
-    t.string   "lat_long"
-    t.string   "street"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "zip_code"
+    t.string  "lat_long"
+    t.string  "street"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.boolean "gmaps"
   end
 
   create_table "messages", force: true do |t|
-    t.string   "category"
     t.datetime "dispatch_on"
-    t.string   "ip_address"
-    t.string   "text"
-    t.integer  "user_id"
-    t.integer  "number_id"
-    t.integer  "address_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "confirmation"
-    t.integer  "drive_time"
-  end
-
-  create_table "numbers", force: true do |t|
-    t.integer  "user_id"
     t.string   "phone_number"
-    t.integer  "message_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.boolean  "banned"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "ip_address"
+    t.integer  "number_id"
+    t.boolean  "sent"
+    t.integer  "drive_time"
   end
 
 end

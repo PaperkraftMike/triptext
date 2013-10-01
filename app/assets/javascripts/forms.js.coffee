@@ -1,77 +1,68 @@
+is_int = (value) ->
+  if (parseFloat(value) is parseInt(value)) and not isNaN(value)
+    true
+  else
+    false
+
 $(document).ready ->
 
-  $('h1').fitText()
-  $('h2').fitText(2)
-  $('h3').fitText()
-  $('.custom-error-message').fitText()
-  $('input[type=submit]').fitText()
-  $('input[type=text]').fitText(4)
+  $(".zip").on "keyup", ->
+    el = $(this)
+    if (el.val().length is 5) and (is_int(el.val()))
+      $.ajax
+        url: "http://zip.elevenbasetwo.com"
+        cache: false
+        dataType: "json"
+        type: "GET"
+        data: "zip=" + el.val()
+        success: (result, success) ->
+          $(".city").text result.city
+          $(".state").text result.state
 
-  $("#first form").bind "ajax:complete", (evt, xhr, status) ->
-    if status is 'success'
-      $("#to_street_error").fadeOut()
-      $("#to_zip_error").fadeOut()
-      $("#first").animate
+        error: (result, success) ->
+          $(".city").text "CITY"
+          $(".state").text "STATE"  
+    else
+        $(".city").text "CITY"
+        $(".state").text "STATE"               
+
+
+  jQuery.hook 'addClass'
+
+  $('.form-control').bind "onafteraddClass", (e) ->
+    popup = $("form label[for='" + $(this).attr('id') + "']")
+    if $(this).hasClass('parsley-error')
+      popup.addClass "error"
+      $('.panel').addClass "error"
+      popContent = $(this).next().text()
+      popup.popover content: popContent
+      popup.popover "show"
+    else
+      popup.removeClass "error"
+      popup.popover "destroy"
+
+  $('.destination').on "submit", ->
+    if $(this).parsley('validate')
+      $('.panel').removeClass "error"
+      window.destination = $('.destination .address').val() + ',' + $('.destination .zip').val()
+      $('#destination').animate
         left: "-50%"
-      , 500, ->
-        $("#first").css "display", "none"
+      , 800
 
-      $("#second").animate
+      $('#origin').animate
         left: "50%"
-      , 500
-    else 
-      errors = $.parseJSON(xhr.responseText).errors
-      $("#to_street_error").empty()
-      $("#to_zip_error").empty()
-      if errors.street
-        $("#to_street_error").html errors.street
-        $("#to_street_error").fadeIn()
-      else
-        $("#to_street_error").fadeOut()
-      if errors.zip_code
-        $("#to_zip_error").html errors.zip_code
-        $("#to_zip_error").fadeIn()
-      else
-        $("#to_zip_error").fadeOut()
+      , 800
 
-
-  $("#second form").bind "ajax:complete", (evt, xhr, status) ->
-    if status is 'success'
-      $("#from_street_error").fadeOut()
-      $("#from_zip_error").fadeOut()
-      $("#second").animate
+  $('.origin').on "submit", ->
+    if $(this).parsley('validate')
+      window.origin = $('.origin .address').val() + ',' + $('.origin .zip').val()
+      $.getJSON( "http://maps.googleapis.com/maps/api/directions/json?origin=#{window.origin}&destination=#{window.destination}&sensor=false", (data) ->
+        $('.drive_time').val data.routes[0].legs[0].duration.value
+      )
+      $('#origin').animate
         left: "-50%"
-      , 500, ->
-        $("#second").css "display", "none"
+      , 800
 
-      $("#third").animate
+      $('#message').animate
         left: "50%"
-      , 500
-    else 
-      errors = $.parseJSON(xhr.responseText).errors
-      $("#from_street_error").empty()
-      $("#from_zip_error").empty()
-      if errors.street
-        $("#from_street_error").html errors.street
-        $("#from_street_error").fadeIn()
-      else
-        $("#from_street_error").fadeOut()
-      if errors.zip_code
-        $("#from_zip_error").html errors.zip_code
-        $("#from_zip_error").fadeIn()
-      else
-        $("#from_zip_error").fadeOut()
-
-  $("#third form").bind "ajax:complete", (evt, xhr, status) ->
-    if status is 'success'
-      $("#from_phone_error").fadeOut()
-      $("#third").animate
-        left: "-50%"
-      , 500, ->
-        $("#third").css "display", "none"
-        $(".map").css "left", "50%"
-        $(".map").fadeIn()
-    else 
-      errors = $.parseJSON(xhr.responseText).errors
-      $("#from_phone_error").html errors.phone_number
-      $("#from_phone_error").fadeIn()
+      , 800
