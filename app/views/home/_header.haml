@@ -1,0 +1,11 @@
+%nav.navbar.navbar-fixed-top{role: 'navigation'}
+  .container
+    %h1.nav-brand.pull-left
+      triptext
+    %ul.nav.nav-pills.pull-right
+      %li
+        =link_to "new trip", '#', class: 'active'
+      %li
+        =link_to "about", '#'
+      %li.disabled
+        =link_to "log in", '#'
