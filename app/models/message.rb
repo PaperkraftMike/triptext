@@ -7,8 +7,11 @@ class Message < ActiveRecord::Base
   private
 
     def dispatch
+      logger.info ENV['TWILIO_ACCOUNT_SID']
+      logger.info "TEST"
       self.dispatch_on = Time.now + t_minus_five_minutes(self.drive_time)
-      Resque.enqueue_at(self.dispatch_on, DispatchMessage, :number => self.phone_number)
+      logger.info self.phone_number
+      Resque.enqueue_at(self.dispatch_on, DispatchMessage, self.phone_number)
     end
 
     def t_minus_five_minutes(time)
