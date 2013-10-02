@@ -27,6 +27,6 @@ TextMe::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
-  ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389' 
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:ae7b8b737a125ec25eb043eb1bf78bf2@tarpon.redistogo.com:9960' 
 
 end
