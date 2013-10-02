@@ -286,6 +286,7 @@ DEPENDENCIES
   pg (= 0.15.1)
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)
+  redis
   resque (= 1.24.1)
   resque-scheduler
   rspec-rails (= 2.13.1)
