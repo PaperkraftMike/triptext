@@ -8,7 +8,6 @@ class Message < ActiveRecord::Base
 
     def dispatch
       self.dispatch_on = Time.now + t_minus_five_minutes(self.drive_time)
-      logger.info self.phone_number
       Resque.enqueue_at(self.dispatch_on, DispatchMessage, self.phone_number)
     end
 

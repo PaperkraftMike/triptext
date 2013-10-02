@@ -11,11 +11,6 @@ require 'resque_scheduler/tasks'
 namespace :resque do
   task :setup do
 
-    # you probably already have this somewhere
-    Resque.redis = 'localhost:6379'
-
-    Resque.logger.level = Logger::DEBUG
-
     # If you want to be able to dynamically change the schedule,
     # uncomment this line.  A dynamic schedule can be updated via the
     # Resque::Scheduler.set_schedule (and remove_schedule) methods.
