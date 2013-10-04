@@ -1,12 +1,14 @@
 @import "bootstrap"
 @import "bootstrap/theme"
-@import url(http://fonts.googleapis.com/css?family=Leckerli+One)
-@import url(http://fonts.googleapis.com/css?family=PT+Sans|Asap|Grand+Hotel|Leckerli+One|Handlee|Walter+Turncoat)
+@import url(http://fonts.googleapis.com/css?family=Leckerli+One|Asap)
 
 body
-  background-image: url(background-3.jpg)
-  background-size: cover
+  background: url(background-3.jpg) 50% 0
   font-family: "Asap"
+
+body, html
+  overflow-x: hidden
+  overflow-y: hidden
 
 ::-moz-selection
   color: rgba(0,0,0,1)
@@ -15,7 +17,15 @@ body
   color: rgba(0,0,0,1)
 
 nav
+  position: absolute
+  left: 50%
+  margin-left: -40%
+  width: 80%
   height: 100px
+  border: 5px solid #fafafa !important
+  border-top: 0 !important
+  border-bottom-left-radius: 10px !important
+  border-bottom-right-radius: 10px !important
 
 .nav-brand
   font-size: 4em
@@ -24,6 +34,9 @@ nav
   -webkit-background-clip: text
   -webkit-text-fill-color: transparent
   font-weight: 500
+  margin-left: 2%
+  span
+    font-size: 0.3em
 
 .navbar, .nav-pills li a
   -webkit-border-radius: 0px
@@ -35,6 +48,8 @@ nav
     padding-top: 120px
     color: white
     font-size: 1.8em
+    border-bottom-left-radius: 10px !important
+    border-bottom-right-radius: 10px !important
     &:hover
       background-color: rgba(60,180,0,0.8)
   a.active
@@ -43,15 +58,13 @@ nav
       background-color: rgba(60,180,0,0.8)
 
 .content
-  margin-top: 200px
+  margin-top: 100px
 
 .panel
   position: absolute
   left: 50%
-  margin-left: -585px
-  width: 1170px
-
-.panel
+  margin-left: -40%
+  width: 80%
   background-color: rgba(60,180,0,0.5)
   border: 2px solid rgba(60,180,0,0.5)
   &.error
@@ -68,7 +81,6 @@ nav
     border-top-right-radius: 5px
     border-bottom-right-radius: 5px
     line-height: 30px
-    &.error
 
 .panel-heading
   background: rgba(0,0,0,0.5) !important
@@ -97,9 +109,69 @@ span.big
   &:focus
     border: 3px solid rgba(255,0,0,0.8)
 
-@media (max-width: 760px)
+@media (max-width: 1024px)
+  .nav li a
+    position: relative
+    padding-top: 10px !important
+    top: 100px
+  nav
+    width: 100%
+    left: 0
+    margin-left: 0
+    border-radius: 0 !important
+  label
+    width: 15% !important
+  input
   .panel
-    width: 740px
+    width: 100%
+    margin-left: -50%
+    border: 0
+    border-top: 2px solid rgba(60,180,0,0.5) !important
+    border-bottom: 2px solid rgba(60,180,0,0.8) !important
+    border-radius: 0 !important
+  .panel-heading
+    font-size: 1em
+
+@media (max-width: 768px)
+  .nav
+    margin: 0 auto
+    width: 370px
+    padding: 0 !important
+    float: none !important
+    li a
+      top: 10px
+  .nav-brand
+    width: 191px
+    margin-left: auto
+    margin-right: auto
+    float: none !important
+  label
+    width: 100% !important
+    font-size: 1.5em !important
+    text-align: left !important
+  .col-sm-10
+    width: 100% !important
+    margin: 0 !important 
+    padding: 0 !important
+    input
+      border-radius: 0 !important
+      height: 70px
+      font-size: 1.7em
+  .col-md-offset-2.col-xs-10
+    text-align: center
+    width: 100%
+    margin: 15px 0 0 0 !important
+    padding: 0 !important
+    .label
+      font-size: 1.2em
+  input[type=submit]
+    padding: 20px 40px !important
+
+@media (max-width: 480px)
+  .panel-heading
+    font-size: 0.8em
+    .label
+      display: none
 
 \::-webkit-input-placeholder
   color: white

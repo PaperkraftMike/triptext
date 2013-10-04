@@ -5,19 +5,19 @@
   .panel-body
     =form_for Location.new, :html => { :class => 'form-horizontal destination' }, remote: true do |f|
       .form-group
-        =f.label :street, class: "col-md-2 control-label input-lg", :'data-placement' => 'left', :'data-html' => 'false', :'data-trigger' => 'manual'
-        .col-md-10
+        =f.label :street, class: "col-sm-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
+        .col-sm-10
           =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
       .form-group
-        =f.label :zip_code, class: "col-md-2 control-label input-lg", :'data-placement' => 'left', :'data-html' => 'false', :'data-trigger' => 'manual'
-        .col-md-10
+        =f.label :zip_code, class: "col-sm-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
+        .col-sm-10
           =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
-        .col-md-offset-2.col-md-10
+        .col-md-offset-2.col-xs-10
           %h3
             %span.city.label.label-success CITY
             %span.state.label.label-success STATE
       .form-group
-        .col-md-offset-2.col-md-10
+        .col-md-offset-2.col-xs-10
           =f.submit "Continue", class: "btn btn-default btn-lg"
 
 .panel.panel-primary#origin
@@ -27,11 +27,11 @@
   .panel-body
     =form_for Location.new, :html => { :class => 'form-horizontal origin' }, remote: true do |f|
       .form-group
-        =f.label :street, class: "col-md-2 control-label input-lg", :'data-placement' => 'left', :'data-html' => 'false', :'data-trigger' => 'manual'
+        =f.label :street, class: "col-md-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
         .col-md-10
           =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
       .form-group
-        =f.label :zip_code, class: "col-md-2 control-label input-lg", :'data-placement' => 'left', :'data-html' => 'false', :'data-trigger' => 'manual'
+        =f.label :zip_code, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
         .col-md-10
           =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
         .col-md-offset-2.col-md-10
@@ -49,7 +49,7 @@
   .panel-body
     =form_for Message.new, :html => { :class => 'form-horizontal message' }, remote: true do |f|
       .form-group
-        =f.label :phone_number, class: "col-md-2 control-label input-lg", :'data-placement' => 'left', :'data-html' => 'false', :'data-trigger' => 'manual'
+        =f.label :phone_number, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
         .col-md-10
           =f.text_field :phone_number, placeholder: "Phone Number", class: 'form-control input-lg', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include a cell phone number.", :'data-notblank-message' => "Please type a valid US cell phone number."
           =f.hidden_field :drive_time, class: 'drive_time'
