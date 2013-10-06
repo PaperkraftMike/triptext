@@ -1,8 +1,8 @@
-# TextMe Application
+# TripText Application
 
-This is TextMe:
+This is TripText:
 
-Have you ever worried about texting and driving?
+Don't text and drive, let us do it for you! 
 
-With TextMe, you can punch in your destination, and
-it will send that special someone a text when you arrive!
+With TripText, you punch in your destination, and
+it will send that special someone a text message when you're getting close!
