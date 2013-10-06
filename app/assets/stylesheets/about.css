@@ -1,0 +1,17 @@
+h1{
+  text-align: center;
+}
+
+.alexanderImage{
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.alexanderImage img{
+  width: 259px;
+}
+
+.authors{
+  text-align: center;
+}
