@@ -56,3 +56,20 @@
       .form-group
         .col-md-offset-2.col-md-10
           =f.submit "Queue Message", class: "btn btn-default btn-lg"
+
+#dialog-message{title: "Your trip"}
+  %p
+    %span.ui-icon.ui-icon-circle-check{style: "float: left; margin: 0 7px 50px 0;"}
+    Your trip summary:
+    .div
+      Drive Time: 
+      =distance_of_time_in_words(Time.now, Time.now + Message.last.drive_time)
+      Estimated Time of Arrival:
+    .div
+      We'll text 
+      =Message.last.phone_number 
+      when you're about 10 minutes away. 
+
+
+
+

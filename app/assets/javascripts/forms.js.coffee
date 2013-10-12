@@ -53,6 +53,7 @@ $(document).ready ->
         left: "50%"
       , 800
 
+
   $('.origin').on "submit", ->
     if $(this).parsley('validate')
       window.origin = $('.origin .address').val() + ',' + $('.origin .zip').val()
@@ -66,3 +67,18 @@ $(document).ready ->
       $('#message').animate
         left: "50%"
       , 800
+      $("#dialog-message").append("<div>Start: #{window.origin}</div>")
+      $("#dialog-message").append("<div>End: #{window.destination}</div>")
+
+  
+  $("#dialog-message").dialog autoOpen: false, modal: true , buttons: [
+    text: "Ok"
+    click: ->
+      $(this).dialog "close"
+      $(this).dialog window.location.href = "/"
+  ]
+
+  $('.message').on "submit", ->
+    if $(this).parsley('validate')
+      $("#dialog-message").dialog("open")
+
