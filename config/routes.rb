@@ -6,6 +6,8 @@ TextMe::Application.routes.draw do
 
   resources :locations
 
+  resources :user
+
   get '/about' => "pages#about"
 
   # The priority is based upon order of creation: first created -> highest priority.

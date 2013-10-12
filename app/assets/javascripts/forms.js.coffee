@@ -70,13 +70,12 @@ $(document).ready ->
       $("#dialog-message").append("<div>Start: #{window.origin}</div>")
       $("#dialog-message").append("<div>End: #{window.destination}</div>")
 
-  
-  $("#dialog-message").dialog autoOpen: false, modal: true , buttons: [
-    text: "Ok"
-    click: ->
-      $(this).dialog "close"
+  $("#dialog-message").dialog autoOpen: false, modal: true , buttons: 
+    Ok: ->
       $(this).dialog window.location.href = "/"
-  ]
+
+    "Like us? Register for more features": ->
+      $(this).dialog "close"
 
   $('.message').on "submit", ->
     if $(this).parsley('validate')

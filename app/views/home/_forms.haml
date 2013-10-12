@@ -59,14 +59,21 @@
 
 #dialog-message{title: "Your trip"}
   %p
-    %span.ui-icon.ui-icon-circle-check{style: "float: left; margin: 0 7px 50px 0;"}
+    %span.ui-icon.ui-icon-circle-check
     Your trip summary:
     .div
-      Drive Time: 
-      =distance_of_time_in_words(Time.now, Time.now + Message.last.drive_time)
-      Estimated Time of Arrival:
+      Drive Time:
+      -eta = distance_of_time_in_words(Time.now, Time.now + Message.last.drive_time)
+      =eta
+      %br
+      Estimated Time of Arrival: 
+      -real_eta = Time.now + Message.last.drive_time
+      =real_eta.strftime("%I:%M%P")
+      %br
+      %br
     .div
-      We'll text 
+      We'll text:
+      %br 
       =Message.last.phone_number 
       when you're about 10 minutes away. 
 
