@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @user.first_name
+%p
+  %b Last name:
+  = @user.last_name
+%p
+  %b Phone number:
+  = @user.phone_number_id
+%p
+  %b Contact:
+  = @user.contact_id
+%p
+  %b Banned:
+  = @user.banned
+%p
+  %b Address:
+  = @user.address
+%p
+  %b Zip code:
+  = @user.zip_code
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

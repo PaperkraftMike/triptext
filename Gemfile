@@ -13,6 +13,7 @@ gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'rufus-scheduler'
 gem 'mono_logger'
 gem 'redis'
+gem 'devise'
 
 group :development, :test do
   gem 'pg', '0.15.1'

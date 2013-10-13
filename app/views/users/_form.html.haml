@@ -1,0 +1,30 @@
+.panel.panel-primary
+  .panel-heading
+    %span.big.label.label-success
+    %h1.about 
+      Register
+    = form_for @user do |f|
+      - if @user.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
+      .field
+        = f.label :first_name
+        = f.text_field :first_name
+      %br
+      .field
+        = f.label :last_name
+        = f.text_field :last_name
+      %br
+      .field
+        = f.label :address
+        = f.text_field :address
+      %br
+      .field
+        = f.label :zip_code
+        = f.text_field :zip_code
+      %br
+      .actions
+        = f.submit 'Save'

@@ -75,7 +75,7 @@ $(document).ready ->
       $(this).dialog window.location.href = "/"
 
     "Like us? Register for more features": ->
-      $(this).dialog "close"
+      $(this).dialog window.location.href = "/users/new"
 
   $('.message').on "submit", ->
     if $(this).parsley('validate')
