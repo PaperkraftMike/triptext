@@ -1,12 +1,15 @@
 TextMe::Application.routes.draw do
   
+  resources :user 
+
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+
+
   root :to => "home#index"
 
   resources :messages
 
   resources :locations
-
-  resources :user
 
   get '/about' => "pages#about"
 
