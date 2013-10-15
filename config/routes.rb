@@ -1,9 +1,8 @@
 TextMe::Application.routes.draw do
   
-  resources :user 
-
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
-
+  
+  resources :users
 
   root :to => "home#index"
 

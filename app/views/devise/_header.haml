@@ -3,8 +3,11 @@
     triptext
   %ul.nav.nav-pills.pull-right
     %li
-      =link_to "new trip", '/'
+      =link_to "new trip", '/', class: 'active'
     %li
-      =link_to "about", '/about', class: 'active'
-    %li.disabled
-      =link_to "log in", '#'
+      =link_to "about", '/about'
+    %li
+      =link_to "log in", new_user_session_path
+    -if user_signed_in?
+      %li
+        =link_to "log out", destroy_user_session_path, method: :delete
