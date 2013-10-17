@@ -1,92 +1,3 @@
-#contentFancyForm
-  %h1 Fancy Sliding Form with jQuery
-  #wrapperFancyForm
-    #stepsFancyForm
-      %form#formElem{action: "", method: "post", name: "formElem"}
-        %fieldset.step
-          %legend Account
-          %p
-            %label{for: "username"} User name
-            %input#username{name: "username"}/
-          %p
-            %label{for: "email"} Email
-            %input#email{autocomplete: "OFF", name: "email", placeholder: "info@tympanus.net", type: "email"}/
-          %p
-            %label{for: "password"} Password
-            %input#password{autocomplete: "OFF", name: "password", type: "password"}/
-        %fieldset.step
-          %legend Personal Details
-          %p
-            %label{for: "name"} Full Name
-            %input#name{autocomplete: "OFF", name: "name", type: "text"}/
-          %p
-            %label{for: "country"} Country
-            %input#country{autocomplete: "OFF", name: "country", type: "text"}/
-          %p
-            %label{for: "phone"} Phone
-            %input#phone{autocomplete: "OFF", name: "phone", placeholder: "e.g. +351215555555", type: "tel"}/
-          %p
-            %label{for: "website"} Website
-            %input#website{autocomplete: "OFF", name: "website", placeholder: "e.g. http://www.codrops.com", type: "tel"}/
-        %fieldset.step
-          %legend Payment
-          %p
-            %label{for: "cardtype"} Card
-            %select#cardtype{name: "cardtype"}
-              %option Visa
-              %option Mastercard
-              %option American Express
-          %p
-            %label{for: "cardnumber"} Card number
-            %input#cardnumber{autocomplete: "OFF", name: "cardnumber", type: "number"}/
-          %p
-            %label{for: "secure"} Security code
-            %input#secure{autocomplete: "OFF", name: "secure", type: "number"}/
-          %p
-            %label{for: "namecard"} Name on Card
-            %input#namecard{autocomplete: "OFF", name: "namecard", type: "text"}/
-        %fieldset.step
-          %legend Settings
-          %p
-            %label{for: "newsletter"} Newsletter
-            %select#newsletter{name: "newsletter"}
-              %option{selected: "selected", value: "Daily"} Daily
-              %option{value: "Weekly"} Weekly
-              %option{value: "Monthly"} Monthly
-              %option{value: "Never"} Never
-          %p
-            %label{for: "updates"} Updates
-            %select#updates{name: "updates"}
-              %option{selected: "selected", value: "1"} Package 1
-              %option{value: "2"} Package 2
-              %option{value: "0"} Don't send updates
-          %p
-            %label{for: "tagname"} Newsletter Tag
-            %input#tagname{autocomplete: "OFF", name: "tagname", type: "text"}/
-        %fieldset.step
-          %legend Confirm
-          %p
-            Everything in the form was correctly filled
-            if all the steps have a green checkmark icon.
-            A red checkmark icon indicates that some field
-            is missing or filled out with invalid data. In this
-            last step the user can confirm the submission of
-            the form.
-          %p.submit
-            %button#registerButton{type: "submit"} Register
-    #navigationFancyForm{style: "display:none;"}
-      %ul
-        %li.selected
-          %a{href: "#"} Account
-        %li
-          %a{href: "#"} Personal Details
-        %li
-          %a{href: "#"} Payment
-        %li
-          %a{href: "#"} Settings
-        %li
-          %a{href: "#"} Confirm
-
 .panel.panel-primary#destination
   .panel-heading
     %span.big.label.label-success 
@@ -103,59 +14,52 @@
       %h1.profileHead
         New Trip
       %a.close-reveal-modal ×
-      .panel-heading
-        %span.big.label.label-success 1
-        %h1 What is your destination?
-      .panel-body
-        =form_for Location.new, :html => { :class => 'form-horizontal destination' }, remote: true do |f|
-          .form-group
-            =f.label :street, class: "col-sm-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
-            .col-sm-10
-              =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
-          .form-group
-            =f.label :zip_code, class: "col-sm-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
-            .col-sm-10
-              =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
-            .col-md-offset-2.col-xs-10
-              %h3
-                %span.city.label.label-success CITY
-                %span.state.label.label-success STATE
-          .form-group
-            .col-md-offset-2.col-xs-10
-              =f.submit "Continue", class: "btn btn-default btn-lg"
-      .panel-heading
-        %span.big.label.label-success 2
-        %h1 Where are you now?
-      .panel-body
-        =form_for Location.new, :html => { :class => 'form-horizontal origin' }, remote: true do |f|
-          .form-group
-            =f.label :street, class: "col-md-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
-            .col-md-10
-              =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
-          .form-group
-            =f.label :zip_code, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
-            .col-md-10
-              =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
-            .col-md-offset-2.col-md-10
-              %h3
-                %span.city.label.label-success CITY
-                %span.state.label.label-success STATE
-          .form-group
-            .col-md-offset-2.col-md-10
-              =f.submit "Continue", class: "btn btn-default btn-lg"
-      .panel-heading
-        %span.big.label.label-success 3
-        %h1 Who do you want to text when you're almost there?
-      .panel-body
-        =form_for Message.new, :html => { :class => 'form-horizontal message' }, remote: true do |f|
-          .form-group
-            =f.label :phone_number, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
-            .col-md-10
-              =f.text_field :phone_number, placeholder: "Phone Number", class: 'form-control input-lg', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include a cell phone number.", :'data-notblank-message' => "Please type a valid US cell phone number."
-              =f.hidden_field :drive_time, class: 'drive_time'
-          .form-group
-            .col-md-offset-2.col-md-10
-              =f.submit "Queue Message", class: "btn btn-default btn-lg"
+      .panel-heading#originUser
+        %h2 Origin
+        =form_for Location.new, :html => {:class => 'originUser'}, remote: true do |f|
+          =f.label :street, class: "col-sm-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
+          =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
+          =f.label :zip_code, class: "col-sm-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
+          =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
+          =f.submit "Continue", class: "btn btn-default btn-lg"
+      .panel-heading#destinationUser
+        %h2 Destination
+        =form_for Location.new, :html => {:class => 'destinationUser'}, remote: true do |f|
+          =f.label :street, class: "col-md-2 control-label input-lg", :'data-placement' => 'top', :'data-html' => 'false', :'data-trigger' => 'manual'
+          =f.text_field :street, placeholder: "Address", class: 'form-control input-lg address', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include an address.", :'data-notblank-message' => "Please type a valid US Address."
+          =f.label :zip_code, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
+          =f.text_field :zip_code, placeholder: "Zip Code", class: 'form-control input-lg zip', :'data-required' => 'required', :'data-notblank' => "true", :'data-regex' => "/\A\d{5}(-\d{4})?\z/", :'data-required-message' => "You must include a zip code.", :'data-notblank-message' => "Please type a valid US zip code in the format 55555.", :'data-regex-message' => "Please type a valid US zip code in the format 55555."
+          =f.submit "Continue", class: "btn btn-default btn-lg"
+      .panel-heading#messageUser
+        %h2 Who do you want to text when you're almost there?
+        =form_for Message.new, :html => {:class => 'messageUser'}, remote: true do |f|
+          =f.label :phone_number, class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manual'
+          =f.text_field :phone_number, placeholder: "Phone Number", class: 'form-control input-lg', :'data-required' => 'required', :'data-notblank' => "true", :'data-required-message' => "You must include a cell phone number.", :'data-notblank-message' => "Please type a valid US cell phone number."
+          =f.label :text,class: "col-md-2 control-label input-lg", :'data-placement' => 'bottom', :'data-html' => 'false', :'data-trigger' => 'manuel'
+          =f.text_area :text, placeholder: "Message", class: 'form-control input-lg'
+          =f.hidden_field :drive_time, class: 'drive_time'
+          =f.submit "Queue Message", class: "btn btn-default btn-lg"
+
+      #dialog-message{title: "Your trip"}
+        %p
+          %span.ui-icon.ui-icon-circle-check
+          Your trip summary:
+          .div
+            Drive Time:
+            -eta = distance_of_time_in_words(Time.now, Time.now + Message.last.drive_time)
+            =eta
+            %br
+            Estimated Time of Arrival: 
+            -real_eta = Time.now + Message.last.drive_time
+            =real_eta.strftime("%I:%M%P")
+            %br
+            %br
+          .div
+            We'll text:
+            %br 
+            =Message.last.phone_number 
+            when you're about 10 minutes away. 
+
 
 
 

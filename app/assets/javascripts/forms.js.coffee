@@ -81,3 +81,37 @@ $(document).ready ->
     if $(this).parsley('validate')
       $("#dialog-message").dialog("open")
 
+  jQuery.hook 'addClass'
+
+  $('.form-control').bind "onafteraddClass", (e) ->
+    popup = $("form label[for='" + $(this).attr('id') + "']")
+    if $(this).hasClass('parsley-error')
+      popup.addClass "error"
+      $('.panel').addClass "error"
+      popContent = $(this).next().text()
+      popup.popover content: popContent
+      popup.popover "show"
+    else
+      popup.removeClass "error"
+      popup.popover "destroy"
+
+  $('.originUser').on "submit", ->
+    if $(this).parsley('validate')
+      $('.panel').removeClass "error"
+      window.originUser = $('.originUser .address').val() + ',' + $('.originUser .zip').val()
+      $('#originUser').fadeOut 300
+      $('#destinationUser').delay(400).fadeIn 300
+
+
+  $('.destinationUser').on "submit", ->
+    if $(this).parsley('validate')
+      window.destinationUser = $('.destinationUser .address').val() + ',' + $('.destinationUser .zip').val()
+      $.getJSON( "http://maps.googleapis.com/maps/api/directions/json?origin=#{window.originUser}&destination=#{window.destinationUser}&sensor=false", (data) ->
+        $('.drive_time').val data.routes[0].legs[0].duration.value
+      )
+      $('#destinationUser').fadeOut 300
+      $('#messageUser').delay(400).fadeIn 300
+
+  $('.messageUser').on "submit", ->
+    if $(this).parsley('validate')
+      $("#dialog-message").dialog("open")
